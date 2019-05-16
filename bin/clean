@@ -1,0 +1,18 @@
+#!/usr/bin/sh
+# Clean and Reset the Database
+
+if [ ! -d /var/run/scorebot ]; then
+    sudo sh -c "mkdir /var/run/scorebot; chmod 777 /var/run/scorebot; chown $USER: /var/run/scorebot"
+fi
+
+rm db/scorebot.sqlite3 2> /dev/null
+find `pwd` -name migr\* -exec rm -rf {} \; 2> /dev/null
+find `pwd` -name \*pycach\* -exec rm -rf {} \; 2> /dev/null
+
+if  [ $# -ge 1 ]; then
+    python src/manage.py makemigrations scorebot_db
+    python src/manage.py migrate
+    python src/manage.py createsuperuser --username root --email "email"
+fi
+
+# EOF

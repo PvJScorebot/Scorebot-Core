@@ -1,0 +1,3208 @@
+{
+	"name": "BSides Las Vegas 2018: Day 1",
+	"message": "This is Scorebot v3",
+	"mode": 0,
+	"teams": [{
+		"id": 31,
+		"name": "Redcell",
+		"color": "#ff0006",
+		"score": {
+			"total": 274800,
+			"health": 0,
+			"beacons": 274800,
+			"tickets": 0,
+			"flags": 0
+		},
+		"offense": true,
+		"flags": {
+			"open": 0,
+			"lost": 0,
+			"captured": 0
+		},
+		"tickets": {
+			"open": 0,
+			"closed": 0
+		},
+		"hosts": [],
+		"logo": "default.png",
+		"beacons": [],
+		"minimal": false
+	}, {
+		"id": 32,
+		"name": "KnightsWhoSayNi",
+		"color": "#ae5cb9",
+		"score": {
+			"total": 8184,
+			"health": 71909,
+			"beacons": -61850,
+			"tickets": -1875,
+			"flags": 0
+		},
+		"offense": false,
+		"flags": {
+			"open": 0,
+			"lost": 0,
+			"captured": 0
+		},
+		"tickets": {
+			"open": 0,
+			"closed": 1
+		},
+		"hosts": [{
+			"name": "dbsvr",
+			"id": 254,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 507,
+				"protocol": "t",
+				"port": 3306,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 508,
+				"protocol": "t",
+				"port": 22,
+				"bonus": false
+			}]
+		}, {
+			"name": "freePBX",
+			"id": 255,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 509,
+				"protocol": "t",
+				"port": 5269,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 510,
+				"protocol": "t",
+				"port": 22,
+				"bonus": false
+			}]
+		}, {
+			"name": "samba",
+			"id": 256,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 511,
+				"protocol": "t",
+				"port": 22,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 512,
+				"protocol": "t",
+				"port": 445,
+				"bonus": false
+			}]
+		}, {
+			"name": "mail",
+			"id": 257,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 513,
+				"protocol": "t",
+				"port": 25,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 514,
+				"protocol": "t",
+				"port": 22,
+				"bonus": false
+			}]
+		}, {
+			"name": "ecommerce",
+			"id": 258,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 515,
+				"protocol": "t",
+				"port": 80,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 516,
+				"protocol": "t",
+				"port": 22,
+				"bonus": false
+			}]
+		}, {
+			"name": "web",
+			"id": 259,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 517,
+				"protocol": "t",
+				"port": 80,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 518,
+				"protocol": "t",
+				"port": 445,
+				"bonus": false
+			}]
+		}, {
+			"name": "desktop-1",
+			"id": 260,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 519,
+				"protocol": "t",
+				"port": 3389,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 520,
+				"protocol": "t",
+				"port": 445,
+				"bonus": false
+			}]
+		}, {
+			"name": "desktop-2",
+			"id": 261,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 521,
+				"protocol": "t",
+				"port": 3389,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 522,
+				"protocol": "t",
+				"port": 445,
+				"bonus": false
+			}]
+		}, {
+			"name": "dc",
+			"id": 262,
+			"online": false,
+			"services": [{
+				"status": "red",
+				"id": 523,
+				"protocol": "t",
+				"port": 3389,
+				"bonus": false
+			}, {
+				"status": "red",
+				"id": 524,
+				"protocol": "t",
+				"port": 445,
+				"bonus": false
+			}]
+		}, {
+			"name": "puzzle-1",
+			"id": 293,
+			"online": true,
+			"services": [{
+				"status": "red",
+				"id": 585,
+				"protocol": "t",
+				"port": 19,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 586,
+				"protocol": "t",
+				"port": 22,
+				"bonus": false
+			}]
+		}, {
+			"name": "puzzle-3",
+			"id": 297,
+			"online": true,
+			"services": [{
+				"status": "red",
+				"id": 593,
+				"protocol": "t",
+				"port": 31337,
+				"bonus": false
+			}]
+		}, {
+			"name": "puzzle-11",
+			"id": 301,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 597,
+				"protocol": "t",
+				"port": 54321,
+				"bonus": false
+			}]
+		}],
+		"logo": "/upload/image4.png",
+		"beacons": [{
+			"team": 31,
+			"color": "#ff0006"
+		}],
+		"minimal": false
+	}, {
+		"id": 33,
+		"name": ":(){ :|:&};:",
+		"color": "#e4f7b3",
+		"score": {
+			"total": -17940,
+			"health": 65360,
+			"beacons": -81300,
+			"tickets": -2000,
+			"flags": 0
+		},
+		"offense": false,
+		"flags": {
+			"open": 0,
+			"lost": 0,
+			"captured": 0
+		},
+		"tickets": {
+			"open": 1,
+			"closed": 0
+		},
+		"hosts": [{
+			"name": "dbsvr",
+			"id": 264,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 527,
+				"protocol": "t",
+				"port": 3306,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 528,
+				"protocol": "t",
+				"port": 22,
+				"bonus": false
+			}]
+		}, {
+			"name": "freePBX",
+			"id": 265,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 529,
+				"protocol": "t",
+				"port": 5269,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 530,
+				"protocol": "t",
+				"port": 22,
+				"bonus": false
+			}]
+		}, {
+			"name": "samba",
+			"id": 266,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 531,
+				"protocol": "t",
+				"port": 22,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 532,
+				"protocol": "t",
+				"port": 445,
+				"bonus": false
+			}]
+		}, {
+			"name": "mail",
+			"id": 267,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 533,
+				"protocol": "t",
+				"port": 25,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 534,
+				"protocol": "t",
+				"port": 22,
+				"bonus": false
+			}]
+		}, {
+			"name": "ecommerce",
+			"id": 268,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 535,
+				"protocol": "t",
+				"port": 80,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 536,
+				"protocol": "t",
+				"port": 22,
+				"bonus": false
+			}]
+		}, {
+			"name": "web",
+			"id": 269,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 537,
+				"protocol": "t",
+				"port": 80,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 538,
+				"protocol": "t",
+				"port": 445,
+				"bonus": false
+			}]
+		}, {
+			"name": "desktop-1",
+			"id": 270,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 539,
+				"protocol": "t",
+				"port": 3389,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 540,
+				"protocol": "t",
+				"port": 445,
+				"bonus": false
+			}]
+		}, {
+			"name": "desktop-2",
+			"id": 271,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 541,
+				"protocol": "t",
+				"port": 3389,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 542,
+				"protocol": "t",
+				"port": 445,
+				"bonus": false
+			}]
+		}, {
+			"name": "dc",
+			"id": 272,
+			"online": false,
+			"services": [{
+				"status": "red",
+				"id": 543,
+				"protocol": "t",
+				"port": 3389,
+				"bonus": false
+			}, {
+				"status": "red",
+				"id": 544,
+				"protocol": "t",
+				"port": 445,
+				"bonus": false
+			}]
+		}, {
+			"name": "puzzle-1",
+			"id": 294,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 587,
+				"protocol": "t",
+				"port": 19,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 588,
+				"protocol": "t",
+				"port": 22,
+				"bonus": false
+			}]
+		}, {
+			"name": "puzzle-3",
+			"id": 298,
+			"online": true,
+			"services": [{
+				"status": "red",
+				"id": 594,
+				"protocol": "t",
+				"port": 31337,
+				"bonus": false
+			}]
+		}, {
+			"name": "puzzle-11",
+			"id": 302,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 598,
+				"protocol": "t",
+				"port": 54321,
+				"bonus": false
+			}]
+		}],
+		"logo": "/upload/image.png",
+		"beacons": [{
+			"team": 31,
+			"color": "#ff0006"
+		}],
+		"minimal": false
+	}, {
+		"id": 34,
+		"name": "PaisleyScratcHmonkeys",
+		"color": "#62b948",
+		"score": {
+			"total": 8443,
+			"health": 83468,
+			"beacons": -72650,
+			"tickets": -2375,
+			"flags": 0
+		},
+		"offense": false,
+		"flags": {
+			"open": 0,
+			"lost": 0,
+			"captured": 0
+		},
+		"tickets": {
+			"open": 0,
+			"closed": 3
+		},
+		"hosts": [{
+			"name": "dbsvr",
+			"id": 274,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 547,
+				"protocol": "t",
+				"port": 3306,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 548,
+				"protocol": "t",
+				"port": 22,
+				"bonus": false
+			}]
+		}, {
+			"name": "freePBX",
+			"id": 275,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 549,
+				"protocol": "t",
+				"port": 5269,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 550,
+				"protocol": "t",
+				"port": 22,
+				"bonus": false
+			}]
+		}, {
+			"name": "samba",
+			"id": 276,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 551,
+				"protocol": "t",
+				"port": 22,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 552,
+				"protocol": "t",
+				"port": 445,
+				"bonus": false
+			}]
+		}, {
+			"name": "mail",
+			"id": 277,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 553,
+				"protocol": "t",
+				"port": 25,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 554,
+				"protocol": "t",
+				"port": 22,
+				"bonus": false
+			}]
+		}, {
+			"name": "ecommerce",
+			"id": 278,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 555,
+				"protocol": "t",
+				"port": 80,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 556,
+				"protocol": "t",
+				"port": 22,
+				"bonus": false
+			}]
+		}, {
+			"name": "web",
+			"id": 279,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 557,
+				"protocol": "t",
+				"port": 80,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 558,
+				"protocol": "t",
+				"port": 445,
+				"bonus": false
+			}]
+		}, {
+			"name": "desktop-1",
+			"id": 280,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 559,
+				"protocol": "t",
+				"port": 3389,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 560,
+				"protocol": "t",
+				"port": 445,
+				"bonus": false
+			}]
+		}, {
+			"name": "desktop-2",
+			"id": 281,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 561,
+				"protocol": "t",
+				"port": 3389,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 562,
+				"protocol": "t",
+				"port": 445,
+				"bonus": false
+			}]
+		}, {
+			"name": "dc",
+			"id": 282,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 563,
+				"protocol": "t",
+				"port": 3389,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 564,
+				"protocol": "t",
+				"port": 445,
+				"bonus": false
+			}]
+		}, {
+			"name": "puzzle-1",
+			"id": 295,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 589,
+				"protocol": "t",
+				"port": 19,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 590,
+				"protocol": "t",
+				"port": 22,
+				"bonus": false
+			}]
+		}, {
+			"name": "puzzle-3",
+			"id": 299,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 595,
+				"protocol": "t",
+				"port": 31337,
+				"bonus": false
+			}]
+		}, {
+			"name": "puzzle-11",
+			"id": 303,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 599,
+				"protocol": "t",
+				"port": 54321,
+				"bonus": false
+			}]
+		}],
+		"logo": "/upload/Screenshot_2018-08-07-13-21-17-1.png",
+		"beacons": [{
+			"team": 31,
+			"color": "#ff0006"
+		}],
+		"minimal": false
+	}, {
+		"id": 35,
+		"name": "ArcanumExNihilo",
+		"color": "#d89057",
+		"score": {
+			"total": 11492,
+			"health": 86917,
+			"beacons": -74800,
+			"tickets": -625,
+			"flags": 0
+		},
+		"offense": false,
+		"flags": {
+			"open": 0,
+			"lost": 0,
+			"captured": 0
+		},
+		"tickets": {
+			"open": 0,
+			"closed": 1
+		},
+		"hosts": [{
+			"name": "dbsvr",
+			"id": 284,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 567,
+				"protocol": "t",
+				"port": 3306,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 568,
+				"protocol": "t",
+				"port": 22,
+				"bonus": false
+			}]
+		}, {
+			"name": "freePBX",
+			"id": 285,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 569,
+				"protocol": "t",
+				"port": 5269,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 570,
+				"protocol": "t",
+				"port": 22,
+				"bonus": false
+			}]
+		}, {
+			"name": "samba",
+			"id": 286,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 571,
+				"protocol": "t",
+				"port": 22,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 572,
+				"protocol": "t",
+				"port": 445,
+				"bonus": false
+			}]
+		}, {
+			"name": "mail",
+			"id": 287,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 573,
+				"protocol": "t",
+				"port": 25,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 574,
+				"protocol": "t",
+				"port": 22,
+				"bonus": false
+			}]
+		}, {
+			"name": "ecommerce",
+			"id": 288,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 575,
+				"protocol": "t",
+				"port": 80,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 576,
+				"protocol": "t",
+				"port": 22,
+				"bonus": false
+			}]
+		}, {
+			"name": "web",
+			"id": 289,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 577,
+				"protocol": "t",
+				"port": 80,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 578,
+				"protocol": "t",
+				"port": 445,
+				"bonus": false
+			}]
+		}, {
+			"name": "desktop-1",
+			"id": 290,
+			"online": false,
+			"services": [{
+				"status": "red",
+				"id": 579,
+				"protocol": "t",
+				"port": 3389,
+				"bonus": false
+			}, {
+				"status": "red",
+				"id": 580,
+				"protocol": "t",
+				"port": 445,
+				"bonus": false
+			}]
+		}, {
+			"name": "desktop-2",
+			"id": 291,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 581,
+				"protocol": "t",
+				"port": 3389,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 582,
+				"protocol": "t",
+				"port": 445,
+				"bonus": false
+			}]
+		}, {
+			"name": "dc",
+			"id": 292,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 583,
+				"protocol": "t",
+				"port": 3389,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 584,
+				"protocol": "t",
+				"port": 445,
+				"bonus": false
+			}]
+		}, {
+			"name": "puzzle-1",
+			"id": 296,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 591,
+				"protocol": "t",
+				"port": 19,
+				"bonus": false
+			}, {
+				"status": "green",
+				"id": 592,
+				"protocol": "t",
+				"port": 22,
+				"bonus": false
+			}]
+		}, {
+			"name": "puzzle-3",
+			"id": 300,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 596,
+				"protocol": "t",
+				"port": 31337,
+				"bonus": false
+			}]
+		}, {
+			"name": "puzzle-11",
+			"id": 304,
+			"online": true,
+			"services": [{
+				"status": "green",
+				"id": 600,
+				"protocol": "t",
+				"port": 54321,
+				"bonus": false
+			}]
+		}],
+		"logo": "/upload/image2.png",
+		"beacons": [],
+		"minimal": false
+	}],
+	"events": [{
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ForkBomb's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on ArcanumExNihilo's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on :(){ :|:&};:'s network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on KnightsWhoSayNi's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}, {
+		"type": 0,
+		"data": "A Host on PaisleyScratcHmonkeys's network was compromised by \"Redcell\" #PvJCTF #CTF #BSidesLV!"
+	}],
+	"credit": "r\nHow do computers even work ? \r\n "
+}
