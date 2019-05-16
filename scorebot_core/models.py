@@ -5,7 +5,7 @@ from django.db import models
 from datetime import timedelta
 from django.utils import timezone
 from django.contrib.auth.models import User
-from scorebot.utils.constants import CONST_GAME_GAME_TEAM_LOGO_DIR, CONST_CORE_ACCESS_KEY_LEVELS
+from scorebot.utils.constants import CONST_CORE_ACCESS_KEY_LEVELS
 
 
 def score_create_new():
@@ -42,12 +42,12 @@ class Team(models.Model):
         verbose_name = 'Team'
         verbose_name_plural = 'Teams'
 
+    logo = models.ImageField('Team Logo', null=True, blank=True)
     name = models.CharField('Team Name', max_length=150, unique=True)
     players = models.ManyToManyField('scorebot_core.Player', blank=True)
     color = models.IntegerField('Team Color', default=team_create_new_color)
     last = models.DateTimeField('Team Last Game', null=True, blank=True, editable=False)
     created = models.DateTimeField('Team Registration', auto_now_add=True, editable=False)
-    logo = models.ImageField('Team Logo', upload_to=CONST_GAME_GAME_TEAM_LOGO_DIR, null=True, blank=True)
     score = models.OneToOneField('scorebot_core.Score', on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
@@ -163,13 +163,6 @@ class Credit(models.Model):
 
     @staticmethod
     def get_next_credit():
-        from scorebot_game.models import GameEvent
-        for e in GameEvent.objects.all():
-            if e.type == 1:
-                d = e.data
-                if e.timeout <= timezone.now():
-                    e.delete()
-                return d
         credit = ''
         try:
             credit_selected = random.choice(Credit.objects.all())
@@ -233,13 +226,13 @@ class Options(models.Model):
     name = models.SlugField('Preset Name', max_length=150)
     ticket_cost = models.PositiveSmallIntegerField('Ticket Cost', default=50)
     round_time = models.PositiveSmallIntegerField('Round Time (seconds)', default=300)
-    beacon_value = models.PositiveSmallIntegerField('Beacon Scoring Value', default=100)
-    ticket_max_score = models.PositiveSmallIntegerField('Ticket Max Score', default=2400)
+    beacon_value = models.PositiveSmallIntegerField('Beacon Scoring Value', default=300)
+    ticket_max_score = models.PositiveSmallIntegerField('Ticket Max Score', default=6000)
     flag_stolen_rate = models.PositiveSmallIntegerField('Flag Stolen Rate', default=8400)
-    host_ping_ratio = models.PositiveSmallIntegerField('Default Host Ping Percent', default=50)
+    host_ping_ratio = models.PositiveSmallIntegerField('Default Host Ping Percent', default=125)
     beacon_time = models.PositiveSmallIntegerField('Default Beacon Timeout (seconds)', default=300)
     job_timeout = models.PositiveSmallIntegerField('Unfinished Job Timeout (seconds)', default=300)
-    ticket_reopen_multiplier = models.PositiveSmallIntegerField('Ticket Reopen Multipler', default=10)
+    ticket_reopen_multiplier = models.PositiveSmallIntegerField('Ticket Reopen Multiplier', default=10)
     flag_captured_multiplier = models.PositiveSmallIntegerField('Flag Captured Multiplier', default=300)
     job_cleanup_time = models.PositiveSmallIntegerField('Finished Job Cleanup Time (seconds)', default=900)
     score_exchange_rate = models.PositiveIntegerField('Score to Coin Exchange Rate Percentage', default=100)
