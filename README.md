@@ -15,4 +15,4 @@ From version 3 - ownwards, the components of Scorebot are broken up into seperat
 
 These are the primary components of Scorebot, collectivly called the Scorebot Engine, SBE for short.
 
-I am using this repository to help seperate out and manage the official Scorebot Core code as we develope and add new features.
+I am using this repository to help seperate out and manage the official Scorebot Core code as we develop and add new features.
