@@ -1,0 +1,75 @@
+if
+TokenAdmin
+AccessTokenForm
+AccessTokenAdmin
+
+
+
+Teams
+
+Token
+ - UUID
+ - Name
+ - Expire Date
+
+
+Score
+
+Credit
+Player
+Options
+Monitor
+
+AccessToken
+ - Token
+ - AccessMask
+
+GameModel
+Job
+Game
+GameTeam
+GamePort
+Purchase
+GameScore
+GameEvent
+GameTicket
+GameMonitor
+GameCompromise
+GameCompromiseHost
+DNS
+Flag
+Host
+Service
+Content
+Hypervisor
+
+
+Token
+ - UUID char(UUIDLEN), primary, auto
+ - Name varchar(256)
+ - Alias varchar(50)
+
+Authorization
+ - ID int, primary, auto
+ - Token int
+ - Name varchar(256)
+ - MaskA int64
+ - MaskB int64
+ - MaskC int64
+
+Game
+ - ID int
+ - Name varchar(256)
+ - Status int8
+ - Options int
+
+Options
+ - ID int
+ - Name varchar(256)
+
+OptionValue
+ - ID int
+ - Option int
+ - Name varchar(256)
+ - Value varchar(256)
+ - Number boolean
