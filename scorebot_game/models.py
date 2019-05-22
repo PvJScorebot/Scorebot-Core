@@ -642,7 +642,7 @@ class GameCompromise(GameModel):
 
     finish = models.DateTimeField('Beacon Completed', null=True, blank=True)
     start = models.DateTimeField('Beacon Start', auto_now_add=True, editable=False)
-    token = models.ForeignKey('scorebot_core.Token', null=True, blank=True, editable=False)
+    token = models.ForeignKey('scorebot_core.Token', null=True, blank=True, editable=False,  on_delete=models.SET_NULL)
     checkin = models.DateTimeField('Beacon Checkedin', null=True, blank=True, editable=False)
     attacker = models.ForeignKey('scorebot_game.GameTeam', on_delete=models.CASCADE, related_name='attack_beacons')
 
