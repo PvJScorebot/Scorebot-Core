@@ -29,7 +29,7 @@ setup_sbe() {
         setup_sbe_pkg "python-virtualenv"
     fi
     printf "Creating virutal enviorment..\n"
-    $bin_venv --always-copy "$SBEDIR/python" 1> /dev/null
+    $bin_venv --verbose --always-copy "$SBEDIR/python" 1> /dev/null
     ret=$?
     if [ $ret -ne 0 ]; then
         printf "Virtualenv failed with a status of \"$ret\"!\n"
@@ -49,26 +49,26 @@ setup_sbe() {
     fi
     mkdir "scorebot_data"
     printf "Installing python deps in venv..\n"
-    bash -c "source \"$SBEDIR/python/bin/activate\"; cd \"$SBEDIR/scorebot\"; unset PIP_USER; pip install -r requirements.txt; exit \$?" 1> /dev/null
+    bash -c "source \"$SBEDIR/python/bin/activate\"; cd \"$SBEDIR/scorebot\"; unset PIP_USER; pip install --verbose -r requirements.txt; exit \$?" 1> /dev/null
     ret=$?
     if [ $ret -ne 0 ]; then
         printf "Deps install via PIP failed with a status of \"$ret\"!\n"
         exit 1
     fi
-    bash -c "source \"$SBEDIR/python/bin/activate\"; cd \"$SBEDIR/scorebot\"; env SBE_SQLLITE=1; python manage.py makemigrations scorebot_grid scorebot_core scorebot_game; exit \$?" 1> /dev/null
+    bash -c "source \"$SBEDIR/python/bin/activate\"; cd \"$SBEDIR/scorebot\"; env SBE_SQLLITE=1 python manage.py makemigrations scorebot_grid scorebot_core scorebot_game; exit \$?" 1> /dev/null
     ret=$?
     if [ $ret -ne 0 ]; then
         printf "manage.py failed with a status of \"$ret\"!\n"
         exit 1
     fi
-    bash -c "source \"$SBEDIR/python/bin/activate\"; cd \"$SBEDIR/scorebot\"; env SBE_SQLLITE=1; python manage.py migrate; exit \$?" 1> /dev/null
+    bash -c "source \"$SBEDIR/python/bin/activate\"; cd \"$SBEDIR/scorebot\"; env SBE_SQLLITE=1 python manage.py migrate; exit \$?" 1> /dev/null
     ret=$?
     if [ $ret -ne 0 ]; then
         printf "manage.py failed with a status of \"$ret\"!\n"
         exit 1
     fi
-    printf "Create a password for Django admin, username is \"root\"..\n"
-    bash -c "source \"$SBEDIR/python/bin/activate\"; cd \"$SBEDIR/scorebot\"; env SBE_SQLLITE=1; python manage.py shell -c \"from django.contrib.auth.models import User; User.objects.create_superuser('root', '', 'password')\"; exit $?"
+    printf "Created superuser \"root\" with password \"password\"..\n"
+    bash -c "source \"$SBEDIR/python/bin/activate\"; cd \"$SBEDIR/scorebot\"; env SBE_SQLLITE=1 python manage.py shell -c \"from django.contrib.auth.models import User; User.objects.create_superuser('root', '', 'password')\"; exit $?"
     ret=$?
     if [ $ret -ne 0 ]; then
         printf "manage.py failed with a status of \"$ret\"!\n"
@@ -77,10 +77,10 @@ setup_sbe() {
     printf "Scorebot setup complete, give me a sec, creating support files...\n"
     printf '#!/usr/bin/bash\n\nSBEDIR="' > "$SBEDIR/scorebot/start-daemon.sh"
     printf "$SBEDIR" >>  "$SBEDIR/scorebot/start-daemon.sh"
-    printf '"\nSBEPYTHON="$SBEDIR/python"\n\nbash -c "source \"$SBEPYTHON/bin/activate\"; env SBE_SQLLITE=1; python \"$SBEDIR/scorebot/daemon.py\""\n' >>  "$SBEDIR/scorebot/start-daemon.sh"
+    printf '"\nSBEPYTHON="$SBEDIR/python"\n\nbash -c "source \"$SBEPYTHON/bin/activate\"; env SBE_SQLLITE=1 python \"$SBEDIR/scorebot/daemon.py\""\n' >>  "$SBEDIR/scorebot/start-daemon.sh"
     printf '#!/usr/bin/bash\n\nSBEDIR="' >  "$SBEDIR/scorebot/start-server.sh"
     printf "$SBEDIR" >>  "$SBEDIR/scorebot/start-server.sh"
-    printf '"\nSBEPYTHON="$SBEDIR/python"\n\nbash -c "source \"$SBEPYTHON/bin/activate\"; env SBE_SQLLITE=1; python \"$SBEDIR/scorebot/manage.py\" runserver"\n' >>  "$SBEDIR/scorebot/start-server.sh"
+    printf '"\nSBEPYTHON="$SBEDIR/python"\n\nbash -c "source \"$SBEPYTHON/bin/activate\"; env SBE_SQLLITE=1 python \"$SBEDIR/scorebot/manage.py\" runserver"\n' >>  "$SBEDIR/scorebot/start-server.sh"
     printf '#!/usr/bin/bash\n\n' > "$SBEDIR/scorebot/start-background.sh"
     printf "screen -dmS sbe3-daemon $SBEDIR/scorebot/start-daemon.sh\nscreen -dmS sbe3-web $SBEDIR/scorebot/start-server.sh\n" >> "$SBEDIR/scorebot/start-background.sh"
     printf 'printf "Both SBE services started, you can access the server at http://localhost:8000/"\n' >> "$SBEDIR/scorebot/start-background.sh"
