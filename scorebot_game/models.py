@@ -6,6 +6,7 @@ import random
 from django.db import models
 from datetime import timedelta
 from django.utils import timezone
+from django.db.transaction import atomic
 from django.contrib.auth.models import User
 from scorebot.utils.events import post_tweet, get_scoreboard_message
 from scorebot.utils import api_info, api_debug, api_error, api_warning, api_score, api_event
@@ -407,35 +408,37 @@ class GameTicket(GameModel):
     def close_ticket(self):
         if self.closed:
             return
-        self.closed = True
-        if self.type == 1:
-            self.team.set_tickets(self.total)
-            api_debug('SCORING-ASYNC', 'Giving Team "%s" back "%d" points for closing a Ticket "%s"!'
-                      % (self.team.get_canonical_name(), self.total, self.name))
-            api_score(self.id, 'TICKET-CLOSE', self.team.get_canonical_name(), self.total)
-        else:
-            self.team.set_tickets(self.total/2)
-            api_debug('SCORING-ASYNC', 'Giving Team "%s" back "%d" points for closing a Ticket "%s"!'
-                     % (self.team.get_canonical_name(), self.total/2, self.name))
-            api_score(self.id, 'TICKET-CLOSE', self.team.get_canonical_name(), self.total/2)
-        api_info('SCORING-ASYNC', 'Team "%s" closed Ticket "%s" type "%s"!'
-                 % (self.team.get_canonical_name(), self.name, self.get_type_display()))
-        api_event(self.team.game, 'Team %s just closed a Ticket "%s"!' % (self.team.name, self.name))
-        self.save()
+        with atomic():
+            self.closed = True
+            if self.type == 1:
+                self.team.set_tickets(self.total)
+                api_debug('SCORING-ASYNC', 'Giving Team "%s" back "%d" points for closing a Ticket "%s"!'
+                        % (self.team.get_canonical_name(), self.total, self.name))
+                api_score(self.id, 'TICKET-CLOSE', self.team.get_canonical_name(), self.total)
+            else:
+                self.team.set_tickets(self.total/2)
+                api_debug('SCORING-ASYNC', 'Giving Team "%s" back "%d" points for closing a Ticket "%s"!'
+                        % (self.team.get_canonical_name(), self.total/2, self.name))
+                api_score(self.id, 'TICKET-CLOSE', self.team.get_canonical_name(), self.total/2)
+            api_info('SCORING-ASYNC', 'Team "%s" closed Ticket "%s" type "%s"!'
+                    % (self.team.get_canonical_name(), self.name, self.get_type_display()))
+            api_event(self.team.game, 'Team %s just closed a Ticket "%s"!' % (self.team.name, self.name))
+            self.save()
 
     def reopen_ticket(self):
         if not self.closed:
             return
-        self.closed = False
-        reopen_cost = float(float(self.team.game.get_option('ticket_reopen_multiplier'))/100)
-        score_value = -1 * (reopen_cost * self.total)
-        self.team.set_tickets(score_value)
-        api_score(self.id, 'TICKET-REOPEN', self.team.get_canonical_name(), score_value)
-        api_info('SCORING-ASYNC', 'Team "%s" had the Ticket "%s" reopened, negating "%d" points!'
-                 % (self.team.get_canonical_name(), self.name, score_value))
-        del score_value
-        api_event(self.team.game, 'Ticket "%s" for %s was reopened!' % (self.name, self.team.name))
-        self.save()
+        with atomic():
+            self.closed = False
+            reopen_cost = float(float(self.team.game.get_option('ticket_reopen_multiplier'))/100)
+            score_value = -1 * (reopen_cost * self.total)
+            self.team.set_tickets(score_value)
+            api_score(self.id, 'TICKET-REOPEN', self.team.get_canonical_name(), score_value)
+            api_info('SCORING-ASYNC', 'Team "%s" had the Ticket "%s" reopened, negating "%d" points!'
+                    % (self.team.get_canonical_name(), self.name, score_value))
+            del score_value
+            api_event(self.team.game, 'Ticket "%s" for %s was reopened!' % (self.name, self.team.name))
+            self.save()
 
     def get_canonical_name(self):
         if self.team is not None:
@@ -456,13 +459,14 @@ class GameTicket(GameModel):
         if self.can_score(score_time):
             api_debug('SCORING', 'Scoring Tickect "%s"..' % self.get_canonical_name())
             if self.total < int(self.team.game.get_option('ticket_max_score')):
-                ticket_score = int(self.team.game.get_option('ticket_cost'))
-                self.total = self.total + ticket_score
-                self.team.set_tickets(-1 * ticket_score)
-                api_score(self.id, 'TICKET', self.team.get_canonical_name(), -1 * ticket_score)
-                api_info('SCORING', 'Team "%s" lost "%d" points to open Ticket "%s"!'
-                          % (self.team.get_canonical_name(), ticket_score, self.name))
-                self.save()
+                with atomic():
+                    ticket_score = int(self.team.game.get_option('ticket_cost'))
+                    self.total = self.total + ticket_score
+                    self.team.set_tickets(-1 * ticket_score)
+                    api_score(self.id, 'TICKET', self.team.get_canonical_name(), -1 * ticket_score)
+                    api_info('SCORING', 'Team "%s" lost "%d" points to open Ticket "%s"!'
+                            % (self.team.get_canonical_name(), ticket_score, self.name))
+                    self.save()
 
     @staticmethod
     def grab_ticket_json(request, json_data):
@@ -638,7 +642,7 @@ class GameCompromise(GameModel):
 
     finish = models.DateTimeField('Beacon Completed', null=True, blank=True)
     start = models.DateTimeField('Beacon Start', auto_now_add=True, editable=False)
-    token = models.ForeignKey('scorebot_core.Token', null=True, blank=True, editable=False)
+    token = models.ForeignKey('scorebot_core.Token', null=True, blank=True, editable=False,  on_delete=models.SET_NULL)
     checkin = models.DateTimeField('Beacon Checkedin', null=True, blank=True, editable=False)
     attacker = models.ForeignKey('scorebot_game.GameTeam', on_delete=models.CASCADE, related_name='attack_beacons')
 
