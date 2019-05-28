@@ -37,7 +37,6 @@ if len(SECRET_KEY) == 0:
     SECRET_KEY = "".join(
         [choice(ascii_letters + digits + punctuation) for n in range(64)]
     )
-    print('Generated random secret key "%s"..' % SECRET_KEY)
 PLUGIN_DIR = os.path.join(BASE_DIR, "scorebot_assets", "plugins")
 DAEMON_DIR = os.path.join(BASE_DIR, "scorebot_assets", "daemons")
 log_init(LOG_DIR, "DEBUG")

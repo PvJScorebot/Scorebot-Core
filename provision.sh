@@ -5,11 +5,11 @@
 # Change these global vars to suit your needes (if needed)
 SBEURL="https://github.com/iDigitalFlame/scorebot-core.git"
 # The scorebot-core branch to switch to, if empty, this will keep it as master.
-SBEBRANCH="v3.3-atomic"
+SBEBRANCH=""
 
 setup_sbe() {
     if [ $# -ne 1 ]; then
-        printf "setup_sbe <path>\n"
+        printf "$0 <path>\n"
         return 1
     fi
     SBEDIR="$1"
@@ -29,14 +29,14 @@ setup_sbe() {
         setup_sbe_pkg "python-virtualenv"
     fi
     printf "Creating virutal enviorment..\n"
-    $bin_venv --verbose --always-copy "$SBEDIR/python" 1> /dev/null
+    $bin_venv --always-copy "$SBEDIR/python"
     ret=$?
     if [ $ret -ne 0 ]; then
         printf "Virtualenv failed with a status of \"$ret\"!\n"
         exit 1
     fi
     printf "Downloading scorebot-core..\n"
-    git clone $SBEURL "$SBEDIR/scorebot" 2> /dev/null 1> /dev/null
+    git clone $SBEURL "$SBEDIR/scorebot"
     ret=$?
     if [ $ret -ne 0 ]; then
         printf "Git failed with a status of \"$ret\"!\n"
@@ -49,19 +49,19 @@ setup_sbe() {
     fi
     mkdir "scorebot_data"
     printf "Installing python deps in venv..\n"
-    bash -c "source \"$SBEDIR/python/bin/activate\"; cd \"$SBEDIR/scorebot\"; unset PIP_USER; pip install --verbose -r requirements.txt; exit \$?" 1> /dev/null
+    bash -c "source \"$SBEDIR/python/bin/activate\"; cd \"$SBEDIR/scorebot\"; unset PIP_USER; pip install -r requirements.txt; exit \$?"
     ret=$?
     if [ $ret -ne 0 ]; then
         printf "Deps install via PIP failed with a status of \"$ret\"!\n"
         exit 1
     fi
-    bash -c "source \"$SBEDIR/python/bin/activate\"; cd \"$SBEDIR/scorebot\"; env SBE_SQLLITE=1 python manage.py makemigrations scorebot_grid scorebot_core scorebot_game; exit \$?" 1> /dev/null
+    bash -c "source \"$SBEDIR/python/bin/activate\"; cd \"$SBEDIR/scorebot\"; env SBE_SQLLITE=1 python manage.py makemigrations scorebot_grid scorebot_core scorebot_game; exit \$?"
     ret=$?
     if [ $ret -ne 0 ]; then
         printf "manage.py failed with a status of \"$ret\"!\n"
         exit 1
     fi
-    bash -c "source \"$SBEDIR/python/bin/activate\"; cd \"$SBEDIR/scorebot\"; env SBE_SQLLITE=1 python manage.py migrate; exit \$?" 1> /dev/null
+    bash -c "source \"$SBEDIR/python/bin/activate\"; cd \"$SBEDIR/scorebot\"; env SBE_SQLLITE=1 python manage.py migrate; exit \$?"
     ret=$?
     if [ $ret -ne 0 ]; then
         printf "manage.py failed with a status of \"$ret\"!\n"
@@ -82,9 +82,10 @@ setup_sbe() {
     printf "$SBEDIR" >>  "$SBEDIR/scorebot/start-server.sh"
     printf '"\nSBEPYTHON="$SBEDIR/python"\n\nbash -c "source \"$SBEPYTHON/bin/activate\"; env SBE_SQLLITE=1 python \"$SBEDIR/scorebot/manage.py\" runserver"\n' >>  "$SBEDIR/scorebot/start-server.sh"
     printf '#!/usr/bin/bash\n\n' > "$SBEDIR/scorebot/start-background.sh"
-    printf "screen -dmS sbe3-daemon $SBEDIR/scorebot/start-daemon.sh\nscreen -dmS sbe3-web $SBEDIR/scorebot/start-server.sh\n" >> "$SBEDIR/scorebot/start-background.sh"
-    printf 'printf "Both SBE services started, you can access the server at http://localhost:8000/"\n' >> "$SBEDIR/scorebot/start-background.sh"
-    printf "Done!\n"
+    printf "screen -dmS sbe3-daemon bash $SBEDIR/scorebot/start-daemon.sh\nscreen -dmS sbe3-web bash $SBEDIR/scorebot/start-server.sh\n" >> "$SBEDIR/scorebot/start-background.sh"
+    printf 'printf "Both SBE services started, you can access the server at http://localhost:8000/\\n"\n' >> "$SBEDIR/scorebot/start-background.sh"
+    chmod 755 start-*.sh
+    printf "Done!\nOnce started, admin page my be accesed at \"http://localhost:8000/admin/\"\n"
     return 0
 }
 
