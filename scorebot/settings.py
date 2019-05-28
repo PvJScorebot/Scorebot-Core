@@ -1,6 +1,8 @@
 import os
 
+from random import choice
 from scorebot.utils.logger import log_init
+from string import ascii_letters, digits, punctuation
 
 DEBUG = True
 USE_TZ = True
@@ -24,10 +26,18 @@ STATIC_URL = "/static/"
 LOG_DIR = "/tmp/scorebot3"
 ROOT_URLCONF = "scorebot.urls"
 DUMP_DIR = "/tmp/scorebot3_dumps"
-MEDIA_ROOT = "/home/scorebot3/logos"
 WSGI_APPLICATION = "scorebot.wsgi.application"
-SECRET_KEY = "mvn+$y(2lz%!nga3h@p7jf*zsrop^(ojp1)=mdn1gz+im-c%re"
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MEDIA_ROOT = os.path.join(BASE_DIR, "scorebot_media")
+# Going to use a dynamic key here, as we dont want to hard code it in.
+# However, if you want to set a key, edit it here. Randoms are only generated if
+# len(SECRET_KEY) == 0
+SECRET_KEY = ""
+if len(SECRET_KEY) == 0:
+    SECRET_KEY = "".join(
+        [choice(ascii_letters + digits + punctuation) for n in range(64)]
+    )
+    print('Generated random secret key "%s"..' % SECRET_KEY)
 PLUGIN_DIR = os.path.join(BASE_DIR, "scorebot_assets", "plugins")
 DAEMON_DIR = os.path.join(BASE_DIR, "scorebot_assets", "daemons")
 log_init(LOG_DIR, "DEBUG")
@@ -70,9 +80,17 @@ TEMPLATES = [
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        "NAME": os.path.join(BASE_DIR, "scorebot_data", "db.sqlite3"),
     }
 }
+if "SBE_SQLLITE" not in os.environ or os.environ.get("SBE_SQLLITE", default="0") == "0":
+    DATABASES["default"] = {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "scorebot_db",
+        "HOST": "localhost",
+        "USER": "scorebot",
+        "PASSWORD": "password",
+    }
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
