@@ -220,74 +220,6 @@ def Api(request, path):
         return err
 
 
-def getAttr(obj, name, use_meta=False):
-    if len(name) == 0 or name is None:
-        return None, False
-    if hasattr(obj, name):
-        r = getattr(obj, name)
-        if r is None and use_meta:
-            try:
-                r = obj._meta.get_field(name).model
-            except (AttributeError, FieldDoesNotExist):
-                pass
-        return r, True
-    tname = name.title()
-    if hasattr(obj, tname):
-        r = getattr(obj, tname)
-        if r is None and use_meta:
-            try:
-                r = obj._meta.get_field(tname).related_model
-            except (AttributeError, FieldDoesNotExist):
-                pass
-        return r, True
-    lname = name.lower()
-    if hasattr(obj, lname):
-        r = getattr(obj, lname)
-        if r is None and use_meta:
-            try:
-                r = obj._meta.get_field(lname).model
-            except (AttributeError, FieldDoesNotExist):
-                pass
-        return r, True
-    tname = lname.title()
-    if hasattr(obj, lname.title()):
-        r = getattr(obj, tname)
-        if r is None and use_meta:
-            try:
-                r = obj._meta.get_field(tname).model
-            except (AttributeError, FieldDoesNotExist):
-                pass
-        return r, True
-    if lname[len(lname) - 1] != "s":
-        sname = "%ss" % lname
-        if hasattr(obj, sname):
-            r = getattr(obj, sname)
-            if r is None and use_meta:
-                try:
-                    r = obj._meta.get_field(sname).model
-                except (AttributeError, FieldDoesNotExist):
-                    pass
-            return r, True
-        if hasattr(obj, sname.title()):
-            r = getattr(obj, sname.title())
-            if r is None and use_meta:
-                try:
-                    r = obj._meta.get_field(sname.title()).model
-                except (AttributeError, FieldDoesNotExist):
-                    pass
-            return r, True
-    uname = name.upper()
-    if hasattr(obj, uname):
-        r = getattr(obj, uname)
-        if r is None and use_meta:
-            try:
-                r = obj._meta.get_field(uname).model()
-            except (AttributeError, FieldDoesNotExist):
-                pass
-        return r, True
-    return None, False
-
-
 def checkFunc(obj, name):
     func = None
     if hasattr(obj, name):
@@ -310,6 +242,74 @@ def Response(content, status=200):
     return HttpResponse(
         content=dumps(content), status=status, content_type="application/json"
     )
+
+
+def getAttr(obj, name, use_meta=False):
+    if len(name) == 0 or name is None:
+        return None, False
+    if hasattr(obj, name):
+        r = getattr(obj, name)
+        if r is None and use_meta:
+            try:
+                r = obj._meta.get_field(name).related_model
+            except (AttributeError, FieldDoesNotExist):
+                pass
+        return r, True
+    tname = name.title()
+    if hasattr(obj, tname):
+        r = getattr(obj, tname)
+        if r is None and use_meta:
+            try:
+                r = obj._meta.get_field(tname).related_model
+            except (AttributeError, FieldDoesNotExist):
+                pass
+        return r, True
+    lname = name.lower()
+    if hasattr(obj, lname):
+        r = getattr(obj, lname)
+        if r is None and use_meta:
+            try:
+                r = obj._meta.get_field(lname).related_model
+            except (AttributeError, FieldDoesNotExist):
+                pass
+        return r, True
+    tname = lname.title()
+    if hasattr(obj, lname.title()):
+        r = getattr(obj, tname)
+        if r is None and use_meta:
+            try:
+                r = obj._meta.get_field(tname).related_model
+            except (AttributeError, FieldDoesNotExist):
+                pass
+        return r, True
+    if lname[len(lname) - 1] != "s":
+        sname = "%ss" % lname
+        if hasattr(obj, sname):
+            r = getattr(obj, sname)
+            if r is None and use_meta:
+                try:
+                    r = obj._meta.get_field(sname).related_model
+                except (AttributeError, FieldDoesNotExist):
+                    pass
+            return r, True
+        if hasattr(obj, sname.title()):
+            r = getattr(obj, sname.title())
+            if r is None and use_meta:
+                try:
+                    r = obj._meta.get_field(sname.title()).related_model
+                except (AttributeError, FieldDoesNotExist):
+                    pass
+            return r, True
+    uname = name.upper()
+    if hasattr(obj, uname):
+        r = getattr(obj, uname)
+        if r is None and use_meta:
+            try:
+                r = obj._meta.get_field(uname).related_model
+            except (AttributeError, FieldDoesNotExist):
+                pass
+        return r, True
+    return None, False
 
 
 def restFunc(request, obj, method, name, parent):
@@ -357,13 +357,13 @@ def restFunc(request, obj, method, name, parent):
             except Exception as err:
                 return HttpError500("error occured during RestDelete", err)
         return HttpError405(method)
-    secondary = None
     try:
         content = request.body.decode("UTF-8")
     except UnicodeDecodeError:
         return HttpError400("invalid UTF-8 data")
     if content is None or (name is None and len(content) == 0):
         return HttpError400("invalid or empty data content")
+    secondary = None
     if name is None:
         try:
             data = loads(content)
