@@ -5,6 +5,12 @@
 
 from django.utils.timezone import now
 from scorebot_utils.generic import PrintDelta, CreateModel
+from scorebot_utils.constants import (
+    GAME_MODES,
+    GAME_STATUS,
+    GAME_TEAM_GOLD,
+    GAME_TEAM_GRAY,
+)
 from django.db.models import (
     Model,
     CharField,
@@ -15,24 +21,6 @@ from django.db.models import (
     SET_NULL,
     ObjectDoesNotExist,
 )
-
-GAME_MODES = (
-    (0, "Red vs Blue"),
-    (1, "Blue vs Blue"),
-    (2, "King"),
-    (4, "High Ground"),
-    (5, "Score Attack"),
-)
-GAME_STATUS = (
-    (0, "Not Started"),
-    (1, "Running"),
-    (2, "Paused"),
-    (3, "Completed"),
-    (4, "Stopped"),
-    (5, "Archivd"),
-)
-GAME_TEAM_GOLD = "Gold Team"
-GAME_TEAM_GRAY = "Gray Team"
 
 
 class Game(Model):
@@ -102,6 +90,16 @@ class Game(Model):
             self.get_Mode_display(),
             self.get_Status_display(),
         )
+
+    def RestJSON(self):
+        r = {"id": self.ID, "mode": self.Mode, "status": self.Status, "name": self.Name}
+        if self.End is not None:
+            r["end"] = self.End.isoformat()
+        if self.Start is not None:
+            r["start"] = self.Start.isoformat()
+        if self.Options is not None:
+            r["options"] = self.Options.ID
+        return r
 
     def GoldTeam(self):
         try:

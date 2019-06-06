@@ -3,8 +3,10 @@
 #
 # The Scorebot Project / iDigitalFlame 2019
 
-from random import randint
-from scorebot_utils.generic import CreateModel
+from django.db.transaction import atomic
+from scorebot_utils.constants import NewColor
+from scorebot_utils.generic import CreateModel, GetManager
+from scorebot_utils.restful import HttpError428, HttpError404
 from django.db.models import (
     Model,
     ImageField,
@@ -16,11 +18,8 @@ from django.db.models import (
     OneToOneField,
     SET_NULL,
     CASCADE,
+    ObjectDoesNotExist,
 )
-
-
-def _new_color():
-    return ("#%s" % hex(randint(0, 0xFFFFFF))).replace("0x", "")
 
 
 class Team(Model):
@@ -78,6 +77,104 @@ class Team(Model):
             return self.Scoring.Player
         return None
 
+    def RestJSON(self):
+        if hasattr(self, "Scoring") and hasattr(self.Scoring, "Player"):
+            return self.Scoring.Player.RestJSON()
+        if hasattr(self, "Scoring"):
+            return self.Scoring.RestJSON()
+        return {"id": self.ID, "name": self.Name, "game": self.GetGame().ID}
+
+    def SetToken(self, token):
+        self.Token = token
+        self.save()
+
+    """def RestDelete(self, parent, name):
+        if name is None:
+            self.delete()
+            return
+        else:
+            if name == "name":
+                self.name = ""
+            elif name == "score":
+                s = self.GetScore()
+                if s is not None:
+                    s.delete()
+            elif name == "token":
+                self.Token.delete()
+            elif (
+                name == "logo"
+                or name == "color"
+                or name == "store"
+                or name == "offensive"
+            ):
+                p = self.GetPlayer()
+                if p is not None:
+                    if name == "logo":
+                        p.Logo = None
+                    elif name == "color":
+                        p.Color = NewColor()
+                    elif name == "store":
+                        p.Store = None
+                    elif name == "offensive":
+                        p.Offense = False
+                    p.save()
+            self.save()
+        return None
+
+    def RestPut(self, parent, name, data):
+        if "name" not in data:
+            return HttpError428("team name")
+        if "game" not in data:
+            return HttpError428("team game")
+        try:
+            g = GetManager("Game").get(data["game"])
+        except ObjectDoesNotExist:
+            return HttpError404("game %s" % data["game"])
+        with atomic():
+            self.Game = g
+            self.Name = data["name"]
+            self.save()
+            if (
+                "score" in data
+                or "color" in data
+                or "logo" in data
+                or "store" in data
+                or "offensive" in data
+                or "player" in data
+            ):
+                ts = CreateModel("ScoringTeam")
+                ts.Team = self
+                ts.save()
+                if (
+                    "color" in data
+                    or "logo" in data
+                    or "store" in data
+                    or "offensive" in data
+                    or "player" in data
+                ):
+                    tp = CreateModel("PlayerTeam")
+                    tp.Team = ts
+        if "expires" in data:
+            self.Expires = make_aware(parse_datetime(data["expires"]))
+        self.save()
+        r = {"name": self.Name, "uuid": str(self.UUID)}
+        if self.Expires is not None:
+            r["expires"] = self.Expires.isoformat()
+        return r
+
+    def RestPost(self, parent, name, data):
+        if name is None:
+            return None
+        if name.lower() == "name":
+            self.Name = data
+        elif name.lower() == "expires":
+            if data == "now":
+                self.Expires = now()
+            else:
+                self.Expires = make_aware(parse_datetime(data))
+        self.save()
+        return self.RestJSON()"""
+
 
 class ScoringTeam(Model):
     class Meta:
@@ -121,10 +218,24 @@ class ScoringTeam(Model):
     def Fullname(self):
         return self.Team.Fullname()
 
+    def RestJSON(self):
+        if hasattr(self, "Player"):
+            return self.Player.RestJSON()
+        return {
+            "id": self.ID,
+            "name": self.Team.Name,
+            "game": self.GetGame().ID,
+            "score": self.GetScore().Score(),
+        }
+
     def GetPlayer(self):
-        if hasattr(self.Scoring, "Player"):
+        if hasattr(self, "Player"):
             return self.Player
         return None
+
+    def SetToken(self, token):
+        self.Team.SetToken(token)
+        self.save()
 
     def save(self, *args, **kwargs):
         if self.Score is None:
@@ -157,7 +268,7 @@ class PlayerTeam(Model):
         db_column="color",
         verbose_name="Team Color",
         null=False,
-        default=_new_color,
+        default=NewColor,
         max_length=9,
     )
     Store = IntegerField(
@@ -170,8 +281,8 @@ class PlayerTeam(Model):
 
     def __str__(self):
         if not self.Offense:
-            return "%s [D]" % self.Team
-        return self.Team
+            return "%s [D]" % self.Team.__str__()
+        return self.Team.__str__()
 
     def GetGame(self):
         return self.Team.Team.Game
@@ -182,5 +293,23 @@ class PlayerTeam(Model):
     def Fullname(self):
         return self.Team.Team.Fullname()
 
+    def RestJSON(self):
+        resp = {
+            "id": self.ID,
+            "name": self.Team.Team.Name,
+            "game": self.GetGame().ID,
+            "score": self.GetScore().Score(),
+            "color": self.Color,
+            "store_id": self.Store,
+            "offensive": self.Offense,
+        }
+        if self.Logo:
+            resp["logo"] = self.Logo.url
+        return resp
+
     def GetPlayer(self):
         return self
+
+    def SetToken(self, token):
+        self.Team.SetToken(token)
+        self.save()

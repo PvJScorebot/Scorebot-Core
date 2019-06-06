@@ -40,7 +40,6 @@ class Network(Model):
     Nameservers = ManyToManyField(
         db_column="nameservers",
         verbose_name="Network Nameservers",
-        on_delete=SET_NULL,
         to="scorebot_db.DNS",
         blank=True,
     )
@@ -54,4 +53,10 @@ class Network(Model):
         related_name="Networks",
     )
 
-    def __str__(self):
+
+#   def __str__(self):
+#        return
+
+
+class DNS(Model):
+    name = CharField("dd", max_length=1)

@@ -113,3 +113,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = "/static/"
+
+LOG_LEVEL = "debug"
+
+LOG_DIRECTORY = "/tmp/scorebotUDP"
+
+VERSION = "sbe-UDP-v1[alpha]"

@@ -1,10 +1,7 @@
 {
-	"folders": [
+    "folders": [
         {
             "path": "."
-        },
-        {
-            "path": "/home/iDigitalFlame/Documents/Projects/Scorebot4/src/scorebot_db/models"
         }
     ]
 }

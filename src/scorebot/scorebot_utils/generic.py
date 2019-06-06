@@ -3,6 +3,7 @@
 #
 # The Scorebot Project / iDigitalFlame 2019
 
+from django.db.models import Model
 from scorebot_db.models import Models
 
 
@@ -34,6 +35,17 @@ def GetManager(model_name):
     if m is not None and hasattr(m, "objects"):
         return m.objects
     return None
+
+
+def IsModel(model, model_name):
+    if model is None:
+        return False
+    if isinstance(model, Model):
+        return (
+            model.__class__.__name__.lower() in Models
+            and model.__class__.__name__.lower() == model_name.lower()
+        )
+    return False
 
 
 def CreateModel(model_name, save=False):
