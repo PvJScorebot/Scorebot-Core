@@ -203,7 +203,6 @@ def rest(request, path):
         for obj in attribute.all():
             try:
                 r = rest_func(request, obj, request.method, name, parent)
-                print(r)
                 if r is not None:
                     if isinstance(r, HttpError):
                         return r
