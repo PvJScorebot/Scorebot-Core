@@ -3,11 +3,24 @@
 #
 # The Scorebot Project / iDigitalFlame 2019
 
-from django.db.models import Model
 from scorebot_db.models import Models
+from django.db.models import Model, ObjectDoesNotExist
 
 
-def PrintDelta(seconds):
+def get_bool(value):
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, int) or isinstance(value, float):
+        return value == 1
+    if isinstance(value, str):
+        lvalue = value.lower()
+        return len(lvalue) == 0 and (
+            lvalue == "1" or lvalue == "yes" or lvalue == "true"
+        )
+    return False
+
+
+def print_delta(seconds):
     b = "-" if seconds < 0 else ""
     seconds = abs(int(seconds))
     d, seconds = divmod(seconds, 86400)
@@ -22,7 +35,7 @@ def PrintDelta(seconds):
     return "%s%ds" % (b, seconds)
 
 
-def GetModel(model_name):
+def get_model(model_name):
     if model_name is None or len(model_name) == 0:
         return None
     if model_name.lower() in Models:
@@ -30,14 +43,14 @@ def GetModel(model_name):
     return None
 
 
-def GetManager(model_name):
-    m = GetModel(model_name)
+def get_manager(model_name):
+    m = get_model(model_name)
     if m is not None and hasattr(m, "objects"):
         return m.objects
     return None
 
 
-def IsModel(model, model_name):
+def is_model(model, model_name):
     if model is None:
         return False
     if isinstance(model, Model):
@@ -48,8 +61,18 @@ def IsModel(model, model_name):
     return False
 
 
-def CreateModel(model_name, save=False):
-    m = GetModel(model_name)
+def get_by_id(model_name, model_id):
+    try:
+        m = get_manager(model_name)
+        if m is not None:
+            return m.get(pk=model_id)
+    except (ValueError, ObjectDoesNotExist):
+        pass
+    return None
+
+
+def create_model(model_name, save=False):
+    m = get_model(model_name)
     if m is not None:
         i = m()
         if save:

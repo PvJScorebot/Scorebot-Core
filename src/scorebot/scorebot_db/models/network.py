@@ -3,6 +3,9 @@
 #
 # The Scorebot Project / iDigitalFlame 2019
 
+from dns.resolver import Resolver
+from netaddr import IPNetwork, AddrFormatError
+from django.core.exceptions import ValidationError
 from django.db.models import (
     Model,
     CharField,
@@ -10,14 +13,55 @@ from django.db.models import (
     ForeignKey,
     BooleanField,
     ManyToManyField,
+    DateTimeField,
+    PositiveSmallIntegerField,
+    GenericIPAddressField,
     SET_NULL,
+    CASCADE,
     ObjectDoesNotExist,
 )
 
 
+class DNS(Model):
+    class Meta:
+        db_table = "nameservers"
+        verbose_name = "Nameserver"
+        verbose_name_plural = "Nameservers"
+
+    ID = AutoField(
+        db_column="id",
+        verbose_name="Nameserver ID",
+        null=False,
+        primary_key=True,
+        editable=False,
+    )
+    IP = GenericIPAddressField(
+        db_column="address", verbose_name="Nameserver IP", null=False, unpack_ipv4=True
+    )
+
+    def __str__(self):
+        return "Nameserver (%s)" % str(self.IP)
+
+    def rest_json(self):
+        return {"id": self.ID, "ip": str(self.IP)}
+
+    def lookup(self, name):
+        resq = Resolver()
+        resq.timeout = 5
+        resq.nameservers = [str(self.IP)]
+        try:
+            resp = resq.query(name)
+            del resq
+            if len(resp) > 0:
+                return resp[0].address
+        except Exception as err:
+            return None
+        return None
+
+
 class Network(Model):
     class Meta:
-        db_table = "network"
+        db_table = "networks"
         verbose_name = "Network"
         verbose_name_plural = "Networks"
 
@@ -35,7 +79,7 @@ class Network(Model):
         db_column="domain", verbose_name="Network Domain", null=False, max_length=255
     )
     Enabled = BooleanField(
-        db_column="enabled", verbose_name="Network Enabled", null=False, default=False
+        db_column="enabled", verbose_name="Network Enabled", null=False, default=True
     )
     Nameservers = ManyToManyField(
         db_column="nameservers",
@@ -53,10 +97,88 @@ class Network(Model):
         related_name="Networks",
     )
 
+    def game(self):
+        if self.Team is not None:
+            return self.Team.game()
+        return None
 
-#   def __str__(self):
-#        return
+    def __len__(self):
+        return self.Hosts.all().count()
 
+    def __str__(self):
+        if self.Team is None:
+            if not self.Enabled:
+                return "[D] %s (%s) %d Hosts" % (
+                    self.Domain,
+                    self.Subnet,
+                    self.Hosts.all().count(),
+                )
+            return "%s (%s) %d Hosts" % (
+                self.Domain,
+                self.Subnet,
+                self.Hosts.all().count(),
+            )
+        if not self.Enabled:
+            return "[D] %s\%s (%s) %d Hosts" % (
+                self.Team.fullname(),
+                self.Domain,
+                self.Subnet,
+                self.Hosts.all().count(),
+            )
+        return "%s\%s (%s) %d Hosts" % (
+            self.Team.fullname(),
+            self.Domain,
+            self.Subnet,
+            self.Hosts.all().count(),
+        )
 
-class DNS(Model):
-    name = CharField("dd", max_length=1)
+    def rest_json(self):
+        r = {
+            "id": self.ID,
+            "subnet": self.Subnet,
+            "enabled": self.Enabled,
+            "domain": self.Domain,
+            "nameservers": [n.rest_json() for n in self.Nameservers.all()],
+        }
+        if self.Team is not None:
+            r["team"] = self.Team.ID
+        return r
+
+    def lookup(self, name):
+        resq = Resolver()
+        resq.timeout = 5
+        resq.nameservers = [str(n.IP) for n in self.Nameservers.all()]
+        if len(resq) == 0:
+            del resq
+            return None
+        try:
+            resp = resq.query(name)
+            del resq
+            if len(resp) > 0:
+                return resp[0].address
+        except Exception as err:
+            return None
+        return None
+
+    def save(self, *args, **kwargs):
+        if "/" not in self.Subnet:
+            raise ValidationError(
+                'Subnet "%(subnet)s" must be in slash notation',
+                code="invalid",
+                params={"subnet": self.Subnet},
+            )
+        try:
+            n = IPNetwork(self.Subnet)
+            if len(n) <= 1:
+                raise ValidationError(
+                    'Subnet "%(subnet)s" is not valid',
+                    code="invalid",
+                    params={"subnet": self.Subnet},
+                )
+        except AddrFormatError:
+            raise ValidationError(
+                'Subnet "%(subnet)s" is not valid',
+                code="invalid",
+                params={"subnet": self.Subnet},
+            )
+        return super().save(*args, **kwargs)

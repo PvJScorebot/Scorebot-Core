@@ -119,3 +119,5 @@ LOG_LEVEL = "debug"
 LOG_DIRECTORY = "/tmp/scorebotUDP"
 
 VERSION = "sbe-UDP-v1[alpha]"
+
+CACHE_OPTIONS = True

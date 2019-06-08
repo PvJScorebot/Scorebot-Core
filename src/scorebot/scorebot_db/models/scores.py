@@ -4,7 +4,11 @@
 # The Scorebot Project / iDigitalFlame 2019
 
 from math import floor
+from django.db.transaction import atomic
 from django.core.exceptions import ValidationError
+from scorebot_utils.restful import HttpError428, HttpError404
+from scorebot_utils.generic import is_model, create_model, get_by_id
+from scorebot_utils.constants import CREDIT_TYPES, TRANSFTER_STATUS
 from django.db.models import (
     Model,
     CharField,
@@ -19,19 +23,56 @@ from django.db.models import (
     SET_NULL,
 )
 
-CREDIT_TYPES = (
-    (0, "Correction"),
-    (1, "Transfer"),
-    (2, "Purchase"),
-    (3, "Payment"),
-    (4, "Health"),
-    (5, "Beacon"),
-    (6, "Flag"),
-    (7, "Ticket"),
-    (8, "Achivement"),
-    (9, "Event"),
-)
-TRANSFTER_STATUS = ((0, "Pending"), (1, "Approved"), (2, "Rejected"))
+
+def new_transaction(credit, sender, receiver, data, auto=True):
+    try:
+        credit.Value = int(data["value"])
+    except ValueError:
+        raise HttpError428("credit value is a number")
+    credit.Type = -1
+    if "type" in data:
+        try:
+            credit.Type = int(data["type"])
+        except ValueError:
+            raise HttpError428("credit type is a number")
+        else:
+            if not (0 < credit.Type < len(CREDIT_TYPES)):
+                raise HttpError428("credit type is out of bounds")
+    elif "type" in data["transaction"]:
+        type_name = data["transaction"]["type"].lower()
+        for t in CREDIT_TYPES:
+            if t[1].lower() == type_name:
+                credit.Type = t[0]
+                break
+        del type_name
+    if credit.Type == -1:
+        raise HttpError428("credit type is invalid")
+    send_trans = None
+    recv_trans = create_model(CREDIT_TYPES[credit.Type][1])
+    with atomic():
+        credit.save()
+        recv_trans.from_json(data["transaction"])
+        if receiver is None and sender is not None:
+            credit.Value = recv_trans.get_pair_value(credit.Value)
+        recv_trans.Credit = credit
+        recv_trans.save()
+        if sender is not None and auto and receiver is not None:
+            send_credit = Credit()
+            send_credit.Score = sender
+            send_credit.Type = credit.Type
+            send_credit.Sender = credit.Sender
+            send_credit.Reciver = credit.Reciver
+            send_credit.Value = recv_trans.get_pair_value(credit.Value)
+            send_credit.Paired = credit
+            send_credit.save()
+            send_trans = create_model(CREDIT_TYPES[credit.Type][1])
+            send_trans.from_json(data["transaction"])
+            send_trans.Credit = send_credit
+            send_trans.save()
+            sender.update()
+            del send_credit
+        credit.update()
+    return (recv_trans, send_trans)
 
 
 class Score(Model):
@@ -39,6 +80,8 @@ class Score(Model):
         db_table = "score"
         verbose_name = "Score"
         verbose_name_plural = "Scores"
+
+    __parents__ = [("team", "PlayerTeam"), ("team", "ScoringTeam")]
 
     ID = AutoField(
         db_column="id",
@@ -51,7 +94,7 @@ class Score(Model):
         db_column="value", verbose_name="Score Value", null=False, default=0, editable=0
     )
 
-    def Score(self):
+    def score(self):
         v = 0
         for c in self.Stack.all():
             v += c.Value
@@ -61,11 +104,45 @@ class Score(Model):
         del v
         return self.Value
 
+    def update(self):
+        self.Score()
+
     def __len__(self):
-        return self.Value
+        return max(self.Value, 0)
 
     def __str__(self):
-        return "Score-%d %dpts" % (self.ID, self.Score())
+        if hasattr(self, "Owner"):
+            return "Score[%d; %s] %dpts" % (self.ID, self.Owner.fullname(), self.Value)
+        return "Score[%d] %dpts" % (self.ID, self.Value)
+
+    def rest_json(self):
+        return {"id": self.ID, "value": self.Value}
+
+    def rest_put(self, parent, data):
+        if parent is not None:
+            if is_model(parent, "PlayerTeam"):
+                parent.Team.Score = self
+                parent.Team.save()
+            else:
+                parent.Score = self
+                parent.save()
+        return self.rest_json()
+
+    def rest_delete(self, parent, name):
+        if name is None:
+            self.delete()
+        return None
+
+    def rest_post(self, parent, name, data):
+        if parent is not None:
+            if is_model(parent, "PlayerTeam"):
+                parent.Team.Score = self
+                parent.Team.save()
+            else:
+                parent.Score = self
+                parent.save()
+            self.save()
+        return self.rest_json()
 
 
 class Credit(Model):
@@ -75,6 +152,8 @@ class Credit(Model):
         get_latest_by = "Date"
         verbose_name = "Credit"
         verbose_name_plural = "Credit"
+
+    __parents__ = [("score", "Score")]
 
     ID = AutoField(
         db_column="id",
@@ -89,6 +168,7 @@ class Credit(Model):
         null=False,
         auto_now_add=True,
         blank=True,
+        editable=False,
     )
     Type = PositiveSmallIntegerField(
         db_column="type",
@@ -96,6 +176,7 @@ class Credit(Model):
         null=False,
         default=0,
         choices=CREDIT_TYPES,
+        editable=False,
     )
     Value = IntegerField(
         db_column="value",
@@ -128,9 +209,18 @@ class Credit(Model):
         to="scorebot_db.Team",
         related_name="ReceivedCredits",
     )
+    Paired = OneToOneField(
+        db_column="pair",
+        verbose_name="Credit Pair",
+        null=True,
+        on_delete=CASCADE,
+        to="scorebot_db.Credit",
+        related_name="Cause",
+        editable=False,
+    )
 
     def __str__(self):
-        s = str(self.Subclass())
+        s = str(self.subclass())
         if len(s) == 0:
             return "[%s]: %s -> %s (%dpts) on %s" % (
                 CREDIT_TYPES[self.Type][1],
@@ -148,20 +238,129 @@ class Credit(Model):
             self.Date.strftime("%m/%d/%y %H:%M"),
         )
 
-    def Subclass(self):
+    def subclass(self):
         n = "Subclass_%s" % CREDIT_TYPES[self.Type][1].lower()
+        print("type id >>", self.Type, n)
         if hasattr(self, n):
             return getattr(self, n)
         return None
 
+    def rest_json(self):
+        r = {
+            "id": self.ID,
+            "date": self.Date.isoformat(),
+            "type": self.Type,
+            "score": self.Score.ID,
+            "receiver": self.Receiver.ID,
+            "sender": self.Sender.ID,
+            "value": self.Value,
+            "transaction": self.subclass().rest_json(),
+        }
+        r["transaction"]["type"] = CREDIT_TYPES[self.Type][1].lower()
+        if self.Paired is not None:
+            r["paried"] = self.Paired.ID
+        return r
+
+    def set_value(self, value):
+        self.Value = value
+        if self.Paired is not None:
+            with atomic():
+                self.Paired.Value = value
+                self.Paired.save()
+                self.Paired.Score.update()
+                self.save()
+                self.Score.update()
+        else:
+            self.save()
+            self.Score.update()
+
     def save(self, *args, **kwargs):
-        if self.Sender.GetGame().ID != self.Receiver.GetGame().ID:
+        if self.Sender.game().ID != self.Receiver.game().ID:
             raise ValidationError(
                 'Receiving team "%(receiver)s" is not in the same game as the Sending team "%(sender)s"',
                 code="invalid",
                 params={"receiver": self.Receiver.Name, "sender": self.Sender.Name},
             )
         super().save(*args, **kwargs)
+
+    def rest_put(self, parent, data):
+        if "sender" not in data:
+            return HttpError428("credit sender")
+        if "value" not in data:
+            return HttpError428("credit value")
+        if "transaction" not in data or not isinstance(data["transaction"], dict):
+            return HttpError428("credit transaction must be a dict")
+        receiver_team = None
+        sender_team = get_by_id("Team", data["sender"])
+        if sender_team is None:
+            return HttpError404("sender id")
+        if parent is None and "receiver" in data:
+            receiver_team = get_by_id("Team", data["receiver"])
+            if receiver_team is None:
+                return HttpError404("receiver id")
+        elif parent is not None and hasattr(parent, "Owner"):
+            receiver_team = parent.Owner
+        else:
+            return HttpError428("credit receiver has no assigned Team")
+        self.Sender = sender_team.base()
+        self.Receiver = sender_team.base()
+        rs = receiver_team.score()
+        if rs is None:
+            self.Score = self.Sender.score()
+        else:
+            self.Score = rs
+        del receiver_team
+        new_transaction(self, sender_team.score(), rs, data, True)
+        del rs
+        del sender_team
+        return self.rest_json()
+
+    def rest_delete(self, parent, name):
+        if name is None:
+            with atomic():
+                if self.Paired is not None:
+                    s = self.Paired.Score
+                    self.Paired.delete()
+                    s.Update()
+                s = self.Score
+                self.delete()
+                s.Update()
+            return None
+        if name == "value":
+            with atomic():
+                if self.Paired is not None:
+                    self.Paired.Value = 0
+                    self.Paired.save()
+                    self.Paired.Score.Update()
+                self.Value = 0
+                self.save()
+                self.Score.Update()
+        return None
+
+    def rest_post(self, parent, name, data):
+        if name is None:
+            if "value" in data:
+                try:
+                    self.set_value(data["value"])
+                except ValueError:
+                    return HttpError428("value is a number")
+            s = self.subclass()
+            if self.Paired is not None:
+                sp = self.Paired.subclass()
+                sp.from_json(data)
+                s.from_json(data)
+                with atomic():
+                    s.save()
+                    sp.save()
+            else:
+                s.from_json(data)
+                s.save()
+        elif name == "value":
+            try:
+                self.set_value(int(data))
+            except ValueError:
+                return HttpError428("value is a number")
+        return self.rest_json()
 
 
 class Transaction(Model):
@@ -186,7 +385,16 @@ class Transaction(Model):
     )
 
     def __str__(self):
-        return ""
+        return "%d" % self.ID
+
+    def rest_json(self):
+        return {"id": self.ID}
+
+    def from_json(self, data):
+        pass
+
+    def get_pair_value(self, value):
+        return value * -1
 
     def save(self, *args, **kwargs):
         if CREDIT_TYPES[self.Credit.Type][1] != self.__class__.__name__:
@@ -201,7 +409,7 @@ class Transaction(Model):
         super().save(*args, **kwargs)
 
 
-class Flag(Transaction):
+class Steal(Transaction):
     class Meta:
         db_table = "credits_flag"
         verbose_name = "Flag Credit"
@@ -226,6 +434,9 @@ class Event(Transaction):
 
     def __str__(self):
         return self.Details
+
+    def rest_json(self):
+        return {"id": self.ID, "details": self.Details}
 
 
 class Ticket(Transaction):
@@ -255,6 +466,9 @@ class Health(Transaction):
             self.Expected,
         )
 
+    def rest_json(self):
+        return {"id": self.ID, "expected": self.Expected}
+
 
 class Beacon(Transaction):
     class Meta:
@@ -282,6 +496,9 @@ class Payment(Transaction):
     def __str__(self):
         return self.Team.Name
 
+    def rest_json(self):
+        return {"id": self.ID, "target": self.Team.ID}
+
 
 class Transfer(Transaction):
     class Meta:
@@ -302,6 +519,9 @@ class Transfer(Transaction):
 
     def __str__(self):
         return self.get_Status_display()
+
+    def rest_json(self):
+        return {"id": self.ID, "expected": self.Expected, "status": self.Status}
 
 
 class Purchase(Transaction):
@@ -331,6 +551,15 @@ class Purchase(Transaction):
             return "%s" % self.Item
         return self.Description
 
+    def rest_json(self):
+        if self.Item is not None:
+            return {
+                "id": self.ID,
+                "description": self.Description,
+                "item": self.Item.ID,
+            }
+        return {"id": self.ID, "description": self.Description}
+
 
 class Achivement(Transaction):
     class Meta:
@@ -349,6 +578,9 @@ class Achivement(Transaction):
     def __str__(self):
         return self.Details
 
+    def rest_json(self):
+        return {"id": self.ID, "details": self.Details}
+
 
 class Correction(Transaction):
     class Meta:
@@ -363,3 +595,12 @@ class Correction(Transaction):
         blank=True,
         max_length=1024,
     )
+
+    def rest_json(self):
+        if self.Notes is not None and len(self.Notes) < 256:
+            return {"id": self.ID, "notes": self.Notes}
+        return {"id": self.ID}
+
+    def from_json(self, data):
+        if "notes" in data:
+            self.Notes = data["notes"]

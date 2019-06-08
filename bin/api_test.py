@@ -9,7 +9,7 @@ def p(m, url, a=None, da=None):
     u = url
     if a is not None:
         u = "%s%s" % (url, a)
-    print("URL: %s" % u)
+    print("%s: %s" % (m.__name__.upper(), u))
     if da is not None:
         print(">>\n%s" % dumps(da, indent=4, sort_keys=True))
         c = m(u, data=dumps(da))
@@ -35,14 +35,40 @@ def p(m, url, a=None, da=None):
 
 url = "http://localhost:8000/api/"
 
-p(get, url, "team/1/token/")
+p(put, url, "game/1/teams/", {"name": "Delta Boss", "color": "0xAF"})
 
-i = p(put, url, "token/", da={"name": "new-whatever-%d" % randint(0, 5000)})
-if "uuid" in i:
-    print("New UUID is '%s'" % i["uuid"])
+"""
+i = p(put, url, "game/", {"name": "New Game (%d)" % randint(0, 500), "start": "now"})
+print("Game ID: %s" % i["id"])
 
-    p(get, url, "token/%s" % i["uuid"])
+p(get, url, "game/%s/" % i["id"])
+p(get, url, "game/%s/teams/" % i["id"])
 
-    p(put, url, "team/1/token/", da={"uuid": i["uuid"]})
+p(delete, url, "game/%s/" % i["id"])
+"""
+"""
+p(
+    put,
+    url,
+    "team/5/score/stack/",
+    {"sender": 6, "value": 100, "transaction": {"type": "correction"}},
+)
 
-p(get, url, "team/1/token/")
+p(
+    put,
+    url,
+    "credit/",
+    {"sender": 5, "receiver": 6, "value": 100, "transaction": {"type": "correction"}},
+)"""
+
+"""
+p(get, url, "ports/")
+p(get, url, "game/1/ports/")
+
+p(delete, url, "game/1/ports/4")
+p(delete, url, "game/1/ports/3")
+
+p(put, url, "game/1/ports/", {"number": 8080})
+p(put, url, "game/1/ports/", {"number": 999, "type": 1})
+p(get, url, "game/1/ports/")
+"""
