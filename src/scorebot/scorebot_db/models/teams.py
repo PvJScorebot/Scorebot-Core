@@ -93,6 +93,7 @@ class Team(Model):
         "logo",
         "player_id",
         "network",
+        "hosts",
     ]
 
     objects = TeamManager()
@@ -508,8 +509,10 @@ class PlayerTeam(Model):
             return self.Logo
         elif name == "player_id":
             return self.ID
-        if name == "network" and hasattr(self.Team.Team, "Networks"):
+        elif name == "network" and hasattr(self.Team.Team, "Networks"):
             return self.Team.Team.Networks
+        elif name == "hosts":
+            return self.hosts()
         return None
 
     def rest_put(self, parent, data):

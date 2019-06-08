@@ -3,9 +3,15 @@
 #
 # The Scorebot Project / iDigitalFlame 2019
 
+from socket import getservbyport
 from django.core.exceptions import ValidationError
-from scorebot_utils.constants import HOST_DEFAULT_VALUE
 from netaddr import IPNetwork, AddrFormatError, IPAddress
+from scorebot_utils.constants import (
+    PORT_TYPES,
+    SERVICE_STATUS,
+    SERVICE_DEFAULT_VALUE,
+    HOST_DEFAULT_VALUE,
+)
 from django.db.models import (
     Model,
     CharField,
@@ -15,6 +21,7 @@ from django.db.models import (
     DateTimeField,
     PositiveSmallIntegerField,
     GenericIPAddressField,
+    PositiveIntegerField,
     CASCADE,
 )
 
@@ -27,7 +34,7 @@ class Host(Model):
 
     ID = AutoField(
         db_column="id",
-        verbose_name="Nameserver ID",
+        verbose_name="Host ID",
         null=False,
         primary_key=True,
         editable=False,
@@ -90,6 +97,12 @@ class Host(Model):
         if t is not None:
             return t.game()
         return None
+
+    def servies(self):
+        return self.Services.all().filter(Enabled=True)
+
+    def __len__(self):
+        return self.Services.all().count()
 
     def __str__(self):
         t = self.team()
@@ -159,4 +172,113 @@ class Host(Model):
                 code="invalid",
                 params={"address": str(self.IP)},
             )
+        return super().save(*args, **kwargs)
+
+
+class Service(Model):
+    class Meta:
+        db_table = "services"
+        verbose_name = "Service"
+        verbose_name_plural = "Services"
+
+    ID = AutoField(
+        db_column="id",
+        verbose_name="Service ID",
+        null=False,
+        primary_key=True,
+        editable=False,
+    )
+    Port = PositiveIntegerField(
+        db_column="port", verbose_name="Service Port", null=False
+    )
+    Enabled = BooleanField(
+        db_column="enabled", verbose_name="Service Enabled", null=False, default=True
+    )
+    Status = PositiveSmallIntegerField(
+        db_column="status",
+        verbose_name="Service Status",
+        null=False,
+        default=0,
+        choices=SERVICE_STATUS,
+        editable=False,
+    )
+    Protocol = PositiveSmallIntegerField(
+        db_column="protocol",
+        verbose_name="Service Protocol",
+        null=False,
+        default=0,
+        choices=PORT_TYPES,
+    )
+    Flags = PositiveSmallIntegerField(
+        db_column="flags", verbose_name="Service Flags", null=False, default=0
+    )
+    Value = PositiveSmallIntegerField(
+        db_column="value",
+        verbose_name="Service Value",
+        null=False,
+        default=SERVICE_DEFAULT_VALUE,
+    )
+    Host = ForeignKey(
+        db_column="host",
+        verbose_name="Service Host",
+        on_delete=CASCADE,
+        null=False,
+        to="scorebot_db.Host",
+        related_name="Services",
+    )
+    Name = CharField(
+        db_column="name",
+        verbose_name="Service Name",
+        null=True,
+        max_length=64,
+        blank=True,
+    )
+    Application = CharField(
+        db_column="application",
+        verbose_name="Service Application",
+        null=True,
+        max_length=64,
+        blank=True,
+    )
+
+    def __str__(self):
+        if not self.Enabled:
+            return "[D] %s\%s (%d/%s) %dpts" % (
+                self.Host.Name,
+                self.Name,
+                self.Port,
+                self.get_Protocol_display(),
+                self.Value,
+            )
+        return "%s\%s (%d/%s) %dpts" % (
+            self.Host.Name,
+            self.Name,
+            self.Port,
+            self.get_Protocol_display(),
+            self.Value,
+        )
+
+    def rest_json(self):
+        r = {
+            "id": self.ID,
+            "port": self.Port,
+            "enable": self.Enabled,
+            "status": self.Status,
+            "protocol": self.Protocol,
+            "flags": self.Flags,
+            "value": self.Value,
+            "host": self.Host.ID,
+            "name": self.Name,
+            "application": self.Application,
+        }
+        if hasattr(self, "Content"):
+            r["content"] = self.Content.ID
+        return r
+
+    def save(self, *args, **kwargs):
+        if self.Name is None:
+            try:
+                self.Name = getservbyport(self.Port)
+            except OSError:
+                self.Name = "%d" % self.Port
         return super().save(*args, **kwargs)

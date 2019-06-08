@@ -47,6 +47,7 @@ ERROR_404_MESSAGE_ALT = "requested resource not avaliable"
 
 # Score Constants
 HOST_DEFAULT_VALUE = 100
+SERVICE_DEFAULT_VALUE = 100
 
 # Model Constants
 GAME_MODES = (
@@ -83,4 +84,12 @@ TRANSFTER_STATUS = ((0, "Pending"), (1, "Approved"), (2, "Rejected"))
 
 PORT_TYPES = ((0, "TCP"), (1, "UDP"), (2, "ICMP"))
 
-OPTION_DEFAULTS = {"host.score": 100}
+SERVICE_STATUS = (
+    (0, "Closed"),
+    (1, "Open"),
+    (2, "Rejected"),
+    (3, "Unreachable"),
+    (4, "Invalid"),
+)
+
+OPTION_DEFAULTS = {"service.bonus.multipler": 2}

@@ -35,40 +35,13 @@ def p(m, url, a=None, da=None):
 
 url = "http://localhost:8000/api/"
 
-p(put, url, "game/1/teams/", {"name": "Delta Boss", "color": "0xAF"})
 
-"""
-i = p(put, url, "game/", {"name": "New Game (%d)" % randint(0, 500), "start": "now"})
-print("Game ID: %s" % i["id"])
+i = p(put, url, "game/", {"name": "Testing Game", "start": "now"})
+assert i is not None and "id" in i
 
-p(get, url, "game/%s/" % i["id"])
-p(get, url, "game/%s/teams/" % i["id"])
-
-p(delete, url, "game/%s/" % i["id"])
-"""
-"""
-p(
-    put,
-    url,
-    "team/5/score/stack/",
-    {"sender": 6, "value": 100, "transaction": {"type": "correction"}},
-)
-
-p(
-    put,
-    url,
-    "credit/",
-    {"sender": 5, "receiver": 6, "value": 100, "transaction": {"type": "correction"}},
-)"""
-
-"""
-p(get, url, "ports/")
-p(get, url, "game/1/ports/")
-
-p(delete, url, "game/1/ports/4")
-p(delete, url, "game/1/ports/3")
-
-p(put, url, "game/1/ports/", {"number": 8080})
-p(put, url, "game/1/ports/", {"number": 999, "type": 1})
-p(get, url, "game/1/ports/")
-"""
+t = [
+    p(put, url, "game/%s/team/" % i["id"], {"name": "Alpha", "color": "0xA1"}),
+    p(put, url, "game/%s/team/" % i["id"], {"name": "Beta", "color": "0xA2"}),
+    p(put, url, "game/%s/team/" % i["id"], {"name": "Delta", "color": "0xA3"}),
+    p(put, url, "game/%s/team/" % i["id"], {"name": "Gamma", "color": "0xA4"}),
+]

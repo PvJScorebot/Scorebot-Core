@@ -28,6 +28,8 @@ class DNS(Model):
         verbose_name = "Nameserver"
         verbose_name_plural = "Nameservers"
 
+    __parent__ = [("network", "Network")]
+
     ID = AutoField(
         db_column="id",
         verbose_name="Nameserver ID",
@@ -64,6 +66,8 @@ class Network(Model):
         db_table = "networks"
         verbose_name = "Network"
         verbose_name_plural = "Networks"
+
+    __parent__ = [("team", "Team"), ("team", "ScoringTeam"), ("team", "PlayerTeam")]
 
     ID = AutoField(
         db_column="id",
