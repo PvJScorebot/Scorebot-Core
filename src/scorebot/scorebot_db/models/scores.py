@@ -7,8 +7,8 @@ from math import floor
 from django.db.transaction import atomic
 from django.core.exceptions import ValidationError
 from scorebot_utils.restful import HttpError428, HttpError404
-from scorebot_utils.generic import is_model, create_model, get_by_id
 from scorebot_utils.constants import CREDIT_TYPES, TRANSFTER_STATUS
+from scorebot_utils.generic import is_model, create_model, get_by_id
 from django.db.models import (
     Model,
     CharField,
@@ -77,7 +77,7 @@ def new_transaction(credit, sender, receiver, data, auto=True):
 
 class Score(Model):
     class Meta:
-        db_table = "score"
+        db_table = "scores"
         verbose_name = "Score"
         verbose_name_plural = "Scores"
 
@@ -134,15 +134,7 @@ class Score(Model):
         return None
 
     def rest_post(self, parent, name, data):
-        if parent is not None:
-            if is_model(parent, "PlayerTeam"):
-                parent.Team.Score = self
-                parent.Team.save()
-            else:
-                parent.Score = self
-                parent.save()
-            self.save()
-        return self.rest_json()
+        return self.rest_post(parent, data)
 
 
 class Credit(Model):
@@ -224,16 +216,16 @@ class Credit(Model):
         if len(s) == 0:
             return "[%s]: %s -> %s (%dpts) on %s" % (
                 CREDIT_TYPES[self.Type][1],
-                self.Sender.Fullname(),
-                self.Receiver.Fullname(),
+                self.Sender.fullname(),
+                self.Receiver.fullname(),
                 self.Value,
                 self.Date.strftime("%m/%d/%y %H:%M"),
             )
         return "%s [%s]: %s -> %s (%dpts) on %s" % (
             s,
             CREDIT_TYPES[self.Type][1],
-            self.Sender.Fullname(),
-            self.Receiver.Fullname(),
+            self.Sender.fullname(),
+            self.Receiver.fullname(),
             self.Value,
             self.Date.strftime("%m/%d/%y %H:%M"),
         )
@@ -415,6 +407,8 @@ class Steal(Transaction):
         verbose_name = "Flag Credit"
         verbose_name_plural = "Flag Credits"
 
+    __hidden__ = True
+
     Flag = None
 
 
@@ -423,6 +417,8 @@ class Event(Transaction):
         db_table = "credits_event"
         verbose_name = "Event Credit"
         verbose_name_plural = "Event Credits"
+
+    __hidden__ = True
 
     Details = CharField(
         db_column="details",
@@ -445,6 +441,8 @@ class Ticket(Transaction):
         verbose_name = "Ticket Credit"
         verbose_name_plural = "Ticket Credits"
 
+    __hidden__ = True
+
     Ticket = None
 
 
@@ -453,6 +451,8 @@ class Health(Transaction):
         db_table = "credits_health"
         verbose_name = "Health Credit"
         verbose_name_plural = "Health Credit"
+
+    __hidden__ = True
 
     Expected = IntegerField(
         db_column="expected", verbose_name="Expected Credits", null=False, default=0
@@ -476,6 +476,8 @@ class Beacon(Transaction):
         verbose_name = "Beacon Credit"
         verbose_name_plural = "Beacon Credits"
 
+    __hidden__ = True
+
     Beacon = None
 
 
@@ -484,6 +486,8 @@ class Payment(Transaction):
         db_table = "credits_payment"
         verbose_name = "Payment Credit"
         verbose_name_plural = "Payment Credits"
+
+    __hidden__ = True
 
     Team = ForeignKey(
         db_column="team",
@@ -505,6 +509,8 @@ class Transfer(Transaction):
         db_table = "credits_transfer"
         verbose_name = "Transfer Credit"
         verbose_name_plural = "Transfer Credits"
+
+    __hidden__ = True
 
     Expected = IntegerField(
         db_column="expected", verbose_name="Transfer Credits", null=False, default=0
@@ -529,6 +535,8 @@ class Purchase(Transaction):
         db_table = "credits_purchase"
         verbose_name = "Purchase Credit"
         verbose_name_plural = "Purchase Credits"
+
+    __hidden__ = True
 
     Item = ForeignKey(
         db_column="item",
@@ -567,6 +575,8 @@ class Achivement(Transaction):
         verbose_name = "Achivement Credit"
         verbose_name_plural = "Achivement Credits"
 
+    __hidden__ = True
+
     Details = CharField(
         db_column="details",
         verbose_name="Achivement Details",
@@ -588,6 +598,8 @@ class Correction(Transaction):
         verbose_name = "Correction Credit"
         verbose_name_plural = "Correction Credits"
 
+    __hidden__ = True
+
     Notes = CharField(
         db_column="notes",
         verbose_name="Correction Notes",
@@ -597,7 +609,7 @@ class Correction(Transaction):
     )
 
     def rest_json(self):
-        if self.Notes is not None and len(self.Notes) < 256:
+        if self.Notes is not None:
             return {"id": self.ID, "notes": self.Notes}
         return {"id": self.ID}
 

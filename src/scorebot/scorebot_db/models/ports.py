@@ -64,6 +64,7 @@ class Port(Model):
             "id": self.ID,
             "game": self.Game.ID,
             "type": self.Type,
+            "type_str": self.get_Type_display(),
             "number": self.Number,
         }
 
@@ -78,7 +79,7 @@ class Port(Model):
                     code="invalid",
                     params={
                         "port": self.Number,
-                        "type": self.get_Type_display(),
+                        "type": self.get_Type_display().lower(),
                         "game": self.Game.Name,
                     },
                 )

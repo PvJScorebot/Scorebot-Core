@@ -6,9 +6,47 @@
 from uuid import uuid4
 from django.contrib.admin import ModelAdmin
 from django.utils.dateparse import parse_datetime
-from django.utils.timezone import now, make_aware
+from django.utils.timezone import now, make_aware, timezone
 from scorebot_utils.restful import HttpError403, HttpError428
-from django.db.models import Model, CharField, UUIDField, DateTimeField
+from django.db.models import (
+    Model,
+    CharField,
+    UUIDField,
+    DateTimeField,
+    Manager,
+    AutoField,
+    OneToOneField,
+    ForeignKey,
+    CASCADE,
+)
+
+
+class TokenManager(Manager):
+    def get_by_name(self, name):
+        pass
+
+    def new(self, expires=None):
+        t = self.create()
+        if isinstance(expires, timezone):
+            t.Expires = expires
+        t.save()
+        return t
+
+
+class IdentifierManager(Manager):
+    def get_by_uuid(self, uuid):
+        pass
+
+    def get_by_name(self, name):
+        pass
+
+    def new(self, team, expires=None):
+        t = Token.objects.new(expires)
+        i = self.create()
+        i.Token = t
+        i.Team = team
+        i.save()
+        return i
 
 
 class Token(Model):
@@ -53,11 +91,11 @@ class Token(Model):
                 return "Token %s" % str(self.UUID)
             return "%s (%s)" % (self.Name, str(self.UUID))
         if self.Name is None or len(self.Name) == 0:
-            return "Token %s Until: %s" % (
+            return "Token %s Until %s" % (
                 str(self.UUID),
                 self.Expires.strftime("%m/%d/%y %H:%M"),
             )
-        return "%s (%s) Until: %s" % (
+        return "%s (%s) Until %s" % (
             self.Name,
             str(self.UUID),
             self.Expires.strftime("%m/%d/%y %H:%M"),
@@ -118,3 +156,56 @@ class Token(Model):
                     self.Expires = make_aware(parse_datetime(data))
         self.save()
         return self.rest_json()
+
+
+class Identifier(Model):
+    class Meta:
+        db_table = "identifiers"
+        verbose_name = "Beacon Token"
+        verbose_name_plural = "Beacon Tokens"
+
+    __parents__ = [
+        ("team", "Team"),
+        ("team", "PlayerTeam"),
+        ("team", "ScoringTeam"),
+        ("beacon", "Compromise"),
+    ]
+
+    ID = AutoField(
+        db_column="id",
+        verbose_name="Identifier ID",
+        null=False,
+        primary_key=True,
+        editable=False,
+    )
+    Team = ForeignKey(
+        db_column="team",
+        verbose_name="Identifier Team",
+        on_delete=CASCADE,
+        null=False,
+        to="scorebot_db.Team",
+        related_name="Identifiers",
+    )
+    Token = OneToOneField(
+        db_column="token",
+        verbose_name="Identifier Token",
+        on_delete=CASCADE,
+        null=False,
+        to="scorebot_db.Token",
+        related_name="Services",
+    )
+
+    def __str__(self):
+        if self.Token.Expires is None:
+            return "%s -> (%s)" % (self.Team.fullname(), str(self.Token.UUID))
+        return "%s -> (%s) Until %s" % (
+            self.Team.fullname(),
+            str(self.Token.UUID),
+            self.Token.Expires.strftime("%m/%d/%y %H:%M"),
+        )
+
+    def rest_json(self):
+        r = {"id": self.ID, "team": self.Team.ID}
+        if self.Token.Expires is not None:
+            r["expires"] = self.Token.Expires.isoformat()
+        return r

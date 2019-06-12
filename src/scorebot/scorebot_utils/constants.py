@@ -48,6 +48,7 @@ ERROR_404_MESSAGE_ALT = "requested resource not avaliable"
 # Score Constants
 HOST_DEFAULT_VALUE = 100
 SERVICE_DEFAULT_VALUE = 100
+CONTENT_DEFAULT_VALUE = 100
 
 # Model Constants
 GAME_MODES = (
@@ -92,4 +93,8 @@ SERVICE_STATUS = (
     (4, "Invalid"),
 )
 
-OPTION_DEFAULTS = {"service.bonus.multipler": 2}
+OPTION_DEFAULTS = {
+    "host.tolerance": 75,
+    "service.bonus.multipler": 2,
+    "content.tolerance": 75,
+}

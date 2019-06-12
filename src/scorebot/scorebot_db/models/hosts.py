@@ -11,6 +11,7 @@ from scorebot_utils.constants import (
     SERVICE_STATUS,
     SERVICE_DEFAULT_VALUE,
     HOST_DEFAULT_VALUE,
+    CONTENT_DEFAULT_VALUE,
 )
 from django.db.models import (
     Model,
@@ -18,17 +19,20 @@ from django.db.models import (
     AutoField,
     ForeignKey,
     BooleanField,
+    TextField,
     DateTimeField,
     PositiveSmallIntegerField,
     GenericIPAddressField,
     PositiveIntegerField,
+    OneToOneField,
     CASCADE,
+    ObjectDoesNotExist,
 )
 
 
 class Host(Model):
     class Meta:
-        db_table = "host"
+        db_table = "hosts"
         verbose_name = "Host"
         verbose_name_plural = "Hosts"
 
@@ -55,6 +59,12 @@ class Host(Model):
     )
     IP = GenericIPAddressField(
         db_column="address", verbose_name="Host IP", null=False, unpack_ipv4=True
+    )
+    Hidden = BooleanField(
+        db_column="hidden",
+        verbose_name="Host Hidden (No Score)",
+        null=False,
+        default=False,
     )
     Scoretime = DateTimeField(
         db_column="scoretime",
@@ -124,6 +134,12 @@ class Host(Model):
             return "[D] %s (%s) %dpts" % (self.Nickname, str(self.IP), self.Value)
         return "%s (%s) %dpts" % (self.Nickname, str(self.IP), self.Value)
 
+    def fullname(self):
+        t = self.team()
+        if t is not None:
+            return "%s\%s" % (t.fullname(), self.Nickname)
+        return self.Nickname
+
     def rest_json(self):
         r = {
             "id": self.ID,
@@ -172,6 +188,15 @@ class Host(Model):
                 code="invalid",
                 params={"address": str(self.IP)},
             )
+        try:
+            if Host.objects.get(Network__ID=self.Network.ID, IP=self.IP).ID != self.ID:
+                raise ValidationError(
+                    'Duplicate IP Address "%(address)s" already exists in Network range "%(range)s"',
+                    code="invalid",
+                    params={"address": str(self.IP), "range": self.Network.Subnet},
+                )
+        except ObjectDoesNotExist:
+            pass
         return super().save(*args, **kwargs)
 
 
@@ -244,14 +269,14 @@ class Service(Model):
     def __str__(self):
         if not self.Enabled:
             return "[D] %s\%s (%d/%s) %dpts" % (
-                self.Host.Name,
+                self.Host.fullname(),
                 self.Name,
                 self.Port,
                 self.get_Protocol_display(),
                 self.Value,
             )
         return "%s\%s (%d/%s) %dpts" % (
-            self.Host.Name,
+            self.Host.fullname(),
             self.Name,
             self.Port,
             self.get_Protocol_display(),
@@ -264,7 +289,9 @@ class Service(Model):
             "port": self.Port,
             "enable": self.Enabled,
             "status": self.Status,
+            "status_str": self.get_Status_display().lower(),
             "protocol": self.Protocol,
+            "protocol_str": self.get_Protocol_display().lower(),
             "flags": self.Flags,
             "value": self.Value,
             "host": self.Host.ID,
@@ -276,9 +303,88 @@ class Service(Model):
         return r
 
     def save(self, *args, **kwargs):
+        try:
+            if (
+                Service.objects.get(
+                    Host__ID=self.Host.ID, Port=self.Port, Protocol=self.Protocol
+                ).ID
+                != self.ID
+            ):
+                raise ValidationError(
+                    'Service "%(port)d/%(protocol)s" already exists on Host "%(host)s"',
+                    code="invalid",
+                    params={
+                        "port": self.Port,
+                        "protocol": self.get_Protocol_display(),
+                        "host": self.Host.Name,
+                    },
+                )
+        except ObjectDoesNotExist:
+            pass
         if self.Name is None:
             try:
                 self.Name = getservbyport(self.Port)
             except OSError:
                 self.Name = "%d" % self.Port
         return super().save(*args, **kwargs)
+
+
+class Content(Model):
+    class Meta:
+        db_table = "contents"
+        verbose_name = "Service Content"
+        verbose_name_plural = "Service Contents"
+
+    ID = AutoField(
+        db_column="id",
+        verbose_name="Content ID",
+        null=False,
+        primary_key=True,
+        editable=False,
+    )
+    Value = PositiveSmallIntegerField(
+        db_column="value",
+        verbose_name="Content Value",
+        null=False,
+        default=CONTENT_DEFAULT_VALUE,
+    )
+    Type = CharField(
+        db_column="type", verbose_name="Content Type", null=False, max_length=64
+    )
+    Data = TextField(
+        db_column="data", verbose_name="Content Data", null=True, blank=True
+    )
+    Tolerance = PositiveSmallIntegerField(
+        db_column="tolerance",
+        verbose_name="Content Match Tolerance",
+        null=True,
+        blank=True,
+    )
+    Service = OneToOneField(
+        db_column="service",
+        verbose_name="Content Service",
+        on_delete=CASCADE,
+        null=False,
+        to="scorebot_db.Service",
+        related_name="Content",
+    )
+
+    def __str__(self):
+        return "%s\%s (%s) %dpts" % (
+            self.Service.Host.fullname(),
+            self.Service.Name,
+            self.Type,
+            self.Value,
+        )
+
+    def rest_json(self):
+        r = {
+            "id": self.ID,
+            "value": self.Value,
+            "type": self.Type,
+            "service": self.Service.ID,
+            "data": "",
+        }
+        if self.Data is not None:
+            r["data"] = self.Data
+        return r

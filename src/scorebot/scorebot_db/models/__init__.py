@@ -26,8 +26,8 @@ try:
                     and "scorebot_db.models" in m.__module__
                 ):
                     Models[n.lower()] = m
-                    if hasattr(m, "Hidden"):
-                        if getattr(m, "Hidden"):
+                    if hasattr(m, "__hidden__"):
+                        if getattr(m, "__hidden__"):
                             log_general.debug(
                                 "MODELS: Skipping hidden model '%s'." % m.__name__
                             )

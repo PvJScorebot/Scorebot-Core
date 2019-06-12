@@ -251,6 +251,7 @@ class ScoringTeam(Model):
         verbose_name = "Scoring Team"
         verbose_name_plural = "Scoring Teams"
 
+    __hidden__ = True
     __parents__ = Team.__parents__
     __exposes__ = Team.__exposes__
 
@@ -392,6 +393,7 @@ class PlayerTeam(Model):
         verbose_name = "Pleyer Team"
         verbose_name_plural = "Player Teams"
 
+    __hidden__ = True
     __parents__ = Team.__parents__
     __exposes__ = Team.__exposes__
 

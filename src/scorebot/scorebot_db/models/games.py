@@ -97,7 +97,14 @@ class Game(Model):
         )
 
     def rest_json(self):
-        r = {"id": self.ID, "mode": self.Mode, "status": self.Status, "name": self.Name}
+        r = {
+            "id": self.ID,
+            "mode": self.Mode,
+            "mode_str": self.get_Mode_display().lower(),
+            "status": self.Status,
+            "status_str": self.get_Status_display().lower(),
+            "name": self.Name,
+        }
         if self.End is not None:
             r["end"] = self.End.isoformat()
         if self.Start is not None:
