@@ -86,7 +86,7 @@ if "SBE_SQLLITE" not in os.environ or os.environ.get("SBE_SQLLITE", default="0")
     DATABASES["default"] = {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "scorebot_db",
-        "HOST": "localhost",
+        "HOST": "scorebot-db",
         "USER": "scorebot",
         "PASSWORD": "password",
     }
