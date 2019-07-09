@@ -133,6 +133,7 @@ class Game(GameModel):
         d = {
             "id": self.id,
             "mode": self.mode,
+            "name": self.name,
             "status": self.status,
         }
         if self.start is not None:

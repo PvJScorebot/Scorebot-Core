@@ -657,5 +657,5 @@ class ScorebotAPI:
     @staticmethod
     def api_get_games(request):
         return HttpResponse(content=json.dumps(
-            [g.get_list_json() for g in Game.object.all().order_by("start")]
+            [g.get_list_json() for g in Game.objects.all().order_by("start")]
         ), content_type="application/json")
