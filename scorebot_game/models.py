@@ -129,6 +129,18 @@ class Game(GameModel):
         # TODO: Add hook to delete all Game Models and reset all Grid Models
         pass
 
+    def get_list_json(self):
+        d = {
+            "id": self.id,
+            "mode": self.mode,
+            "status": self.status,
+        }
+        if self.start is not None:
+            d["start"] = self.start.isoformat()
+        if self.finish is not None:
+            d["end"] = self.finish.isoformat()
+        return d
+
     def get_json_scoreboard(self):
         game_json = {'name': html.escape(self.name), 'message': html.escape(get_scoreboard_message(self.id)),
                      'mode': self.mode, 'teams': [t.get_json_scoreboard() for t in self.teams.all()],
@@ -693,5 +705,3 @@ class GameCompromiseHost(GameModel):
 
     def get_fqdn(self):
         return self.host.fqdn if self.host is not None else self.ip
-
-

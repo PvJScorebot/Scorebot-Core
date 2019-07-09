@@ -653,3 +653,9 @@ class ScorebotAPI:
         except Exception as err:
             return HttpResponseServerError("AN error occured %s!" % str(result))
         return HttpResponse()
+
+    @staticmethod
+    def api_get_games(request):
+        return HttpResponse(content=json.dumps(
+            [g.get_list_json() for g in Game.object.all().order_by("start")]
+        ), content_type="application/json")

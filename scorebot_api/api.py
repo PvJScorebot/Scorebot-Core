@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^ticket$', ScorebotAPI.api_ticket),
     url(r'^beacon/$', ScorebotAPI.api_beacon),
     url(r'^ticket/$', ScorebotAPI.api_ticket),
+    url(r'^games/$', ScorebotAPI.api_get_games),
     url(r'^host/$', ScorebotAPI.api_change_host),
     url(r'^register$', ScorebotAPI.api_register),
     url(r'^purchase$', ScorebotAPI.api_purchase),
