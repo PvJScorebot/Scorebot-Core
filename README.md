@@ -5,7 +5,7 @@ It is built upon a Blue Team / Red Team model, where Blue Teams defend flags aga
 Scoring is based upon flags stolen, scored service up time, and injects submitted (there is no scoring tracking for injects yet).
 
 This version v3.3.2 includes support for atomic transactions and adds additional fixes to support new-er versions of
-Django. All versions of scorebot-core are now deprecated due to the insecure Django-1.8 requirement.
+Django. All *old* (< 3.3) versions of scorebot-core are now deprecated due to the insecure Django-1.8 requirement.
 
 This is a fork of "https://github.com/dichotomy/scorebot" for Scorebot version 3 and greater.
 From version 3 - forward, the components of Scorebot are broken up into separate "modules".
