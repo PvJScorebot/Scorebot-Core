@@ -604,7 +604,7 @@ class ScorebotAPI:
 
     @staticmethod
     def api_default_page(request):
-        g = Game.objects.filter(status=1, start__isnull=False, end__isnull=True).first()
+        g = Game.objects.filter(status=1, start__isnull=False, finish__isnull=True).first()
         if g is not None:
             return HttpResponseRedirect('/scoreboard/%d/' % g.pk)
         return HttpResponseRedirect('/scoreboard/1/')
