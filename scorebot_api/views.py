@@ -604,7 +604,58 @@ class ScorebotAPI:
 
     @staticmethod
     def api_default_page(request):
-        g = Game.objects.filter(status=1, start__isnull=False, end__isnull=True).first()
+        g = Game.objects.filter(status=1, start__isnull=False, finish__isnull=True).first()
         if g is not None:
             return HttpResponseRedirect('/scoreboard/%d/' % g.pk)
         return HttpResponseRedirect('/scoreboard/1/')
+
+    @staticmethod
+    @csrf_exempt
+    @authenticate('__SYS_CLI')
+    def api_change_host(request, host_id=None):
+        if (request.method != "DELETE" or request.method != "POST") and host_id is not None:
+            return HttpResponseBadRequest("Cannot specify a host ID with a non POST/DELETE request!")
+        try:
+            json_text = request.body.decode("UTF-8")
+        except UnicodeTranslateError:
+            return HttpResponseBadRequest("Invalid Unicode!")
+        try:
+            data = json.loads(json_text)
+        except json.decoder.JSONDecodeError:
+            return HttpResponseBadRequest("Invalid JSON!")
+        if host_id is not None and request.method != "GET":
+            try:
+                host = Host.objects.get(id=host_id)
+            except Exception:
+                return HttpResponseNotFound("No host %s found!" % host_id)
+            if request.method == "DELETE":
+                host.delete()
+                return HttpResponse()
+        else:
+            host = Host()
+        if "team" not in data:
+            return HttpResponseBadRequest("Missing 'team' item!")
+        if "ip" not in data:
+            return HttpResponseBadRequest("Missing 'ip' item!")
+        if "dns" not in data:
+            return HttpResponseBadRequest("Missing 'dns' item!")
+        try:
+            token = Token.objects.get(uuid=uuid.UUID(data["team"]))
+            team = GameTeam.objects.get(token=token)
+        except Exception:
+            return HttpResponseNotFound("team with uuid %s not found" % data["team"])
+        host.team = team
+        try:
+            result = host.update_from_json(data)
+            if result is not None:
+                return HttpResponseServerError("AN error occured %s!" % str(result))
+            host.save()
+        except Exception as err:
+            return HttpResponseServerError("AN error occured %s!" % str(result))
+        return HttpResponse()
+
+    @staticmethod
+    def api_get_games(request):
+        return HttpResponse(content=json.dumps(
+            [g.get_list_json() for g in Game.objects.all().order_by("start")]
+        ), content_type="application/json")

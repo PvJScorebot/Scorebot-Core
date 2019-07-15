@@ -272,6 +272,43 @@ class Host(GridModel):
         api_debug('SCORING', 'Finished scoring Host "%s" by Job "%d".' % (self.fqdn, job.id))
         api_score(self.id, 'HOST-JOB', self.get_canonical_name(), 0)
 
+    def update_from_json(self, data):
+        if 'dns' in data:
+            self.fqdn = data["dns"]
+        if "ip" in data:
+            self.ip = data["ip"]
+        if "value" in data:
+            try:
+                self.value = int(data["value"])
+            except ValueError as err:
+                return err
+        with atomic():
+            self.save()
+            if "services" in data and isinstance(data["services"], list):
+                for svc in data["services"]:
+                    s = Service()
+                    if "port" not in svc or "name" not in svc:
+                        continue
+                    try:
+                        s.port = int(svc["port"])
+                    except ValueError as err:
+                        return err
+                    if "protocol" in svc and svc["protocol"] != "tcp":
+                        s.protocol = 2
+                    if "value" in svc:
+                        try:
+                            s.value = int(svc["value"])
+                        except ValueError as err:
+                            return err
+                    s.name = svc["name"]
+                    if "application" in svc:
+                        s.application = svc["application"]
+                    if "bonus" in svc:
+                        s.bonus = bool(svc["bonus"])
+                    s.host = self
+                    s.save()
+        return None
+
 
 class Service(GridModel):
     """

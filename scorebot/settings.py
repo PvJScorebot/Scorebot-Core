@@ -18,7 +18,7 @@ TWITTER_API = {
     "ACCESS_TOKEN_SECRET": "",
 }
 APPEND_SLASH = False
-SBE_VERSION = "v3.3.2-atomic"
+SBE_VERSION = "v3.3.3"
 MEDIA_URL = "/upload/"
 ALLOWED_HOSTS = ["*"]
 LANGUAGE_CODE = "en-us"
