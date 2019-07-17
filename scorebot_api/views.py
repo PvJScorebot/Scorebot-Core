@@ -629,7 +629,8 @@ class ScorebotAPI:
             except Exception:
                 return HttpResponseNotFound("No host %s found!" % host_id)
             if request.method == "DELETE":
-                host.delete()
+                host.team = None
+                host.save()
                 return HttpResponse()
         else:
             host = Host()
@@ -652,7 +653,7 @@ class ScorebotAPI:
             host.save()
         except Exception as err:
             return HttpResponseServerError("AN error occured %s!" % str(result))
-        return HttpResponse()
+        return HttpResponse(json.dumps({"id": host.pk}))
 
     @staticmethod
     def api_get_games(request):
