@@ -20,6 +20,8 @@ urlpatterns = [
     url(r'^transfer/$', ScorebotAPI.api_transfer),
     url(r'^beacon/port$', ScorebotAPI.api_register_port),
     url(r'^beacon/port/$', ScorebotAPI.api_register_port),
+    url(r'^beacon/active$', ScorebotAPI.api_beacon_active),
+    url(r'^beacon/active/$', ScorebotAPI.api_beacon_active),
     url(r'^mapper/(?P<game_id>[0-9]+)$', ScorebotAPI.api_uuid),
     url(r'^mapper/(?P<game_id>[0-9]+)/$', ScorebotAPI.api_uuid),
     url(r'^host/(?P<host_id>[0-9]+)$', ScorebotAPI.api_change_host),

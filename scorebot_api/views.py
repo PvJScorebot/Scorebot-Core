@@ -660,3 +660,24 @@ class ScorebotAPI:
         return HttpResponse(content=json.dumps(
             [g.get_list_json() for g in Game.objects.all().order_by("start")]
         ), content_type="application/json")
+
+    @staticmethod
+    @csrf_exempt
+    @authenticate('__SYS_BEACON')
+    def api_beacon_active(request):
+        if request.method == METHOD_GET:
+            all_beacons = GameCompromise.objects.filter(finish__isnull=True)
+            beacon_list = list()
+            for beacon in all_beacons:
+                beacon_info = dict()
+                beacon_info['host'] = str(beacon.host)
+                beacon_info['token'] = str(beacon.token)
+                beacon_info['attacker'] = str(beacon.attacker)
+                beacon_info['start'] = str(beacon.start)
+                beacon_info['finish'] = str(beacon.finish)
+                beacon_list.append(beacon_info)
+            return HttpResponse(content=json.dumps(beacon_list), safe=False)
+        else:
+            return HttpResponseBadRequest(content='{"message": "SBE API: Not a supported method type!"}')
+        team, token, data, exception = game_team_from_token(request, 'CLI', 'token', beacon=True,
+                                                            fields=['address'])
