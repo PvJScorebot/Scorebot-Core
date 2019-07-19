@@ -3,6 +3,7 @@ import math
 import html
 
 from django.db import models
+from django.db.transaction import atomic
 from scorebot_game.models import GameTeam
 from django.core.exceptions import ValidationError
 from scorebot.utils import api_info, api_debug, api_error, api_warning, api_score, api_event
@@ -93,21 +94,22 @@ class Flag(GridModel):
         if isinstance(attacker, GameTeam):
             api_info('SCORING-ASYNC', 'Flag "%s" was captured by "%s"!'
                      % (self.get_canonical_name(), attacker.get_canonical_name()))
-            self.captured = attacker
-            flag_stolen_value = int(self.team.game.get_option('flag_stolen_rate'))
-            if flag_stolen_value > 0:
-                self.team.set_flags(-1 * flag_stolen_value)
-            else:
-                multiplier = self.team.game.get_option('flag_captured_multiplier')
-                self.team.set_flags(-1 * self.value * multiplier)
-                api_score(self.id, 'FLAG-STOLEN', self.get_canonical_name(), -1 * self.value * multiplier,
-                          self.team.get_canonical_name())
-                attacker.set_flags(self.value * multiplier)
-                api_score(self.id, 'FLAG-STOLEN-ATTCKER', self.get_canonical_name(), self.value * multiplier,
-                          attacker.get_canonical_name())
-                del multiplier
-            api_event(self.team.game, 'A Flag from %s was stolen by %s!' % (self.team.name, attacker.name))
-            self.save()
+            with atomic():
+                self.captured = attacker
+                flag_stolen_value = int(self.team.game.get_option('flag_stolen_rate'))
+                if flag_stolen_value > 0:
+                    self.team.set_flags(-1 * flag_stolen_value)
+                else:
+                    multiplier = self.team.game.get_option('flag_captured_multiplier')
+                    self.team.set_flags(-1 * self.value * multiplier)
+                    api_score(self.id, 'FLAG-STOLEN', self.get_canonical_name(), -1 * self.value * multiplier,
+                            self.team.get_canonical_name())
+                    attacker.set_flags(self.value * multiplier)
+                    api_score(self.id, 'FLAG-STOLEN-ATTCKER', self.get_canonical_name(), self.value * multiplier,
+                            attacker.get_canonical_name())
+                    del multiplier
+                api_event(self.team.game, 'A Flag from %s was stolen by %s!' % (self.team.name, attacker.name))
+                self.save()
         else:
             raise ValueError('Parameter "attacker" must be a "GameTeam" object type!')
 
@@ -229,27 +231,28 @@ class Host(GridModel):
 
     def score_job(self, job, job_data):
         api_debug('SCORING', 'Begin Host scoring on Host "%s"' % self.get_canonical_name())
-        if self.ping_min == 0:
-            ping_ratio = int(self.team.game.get_option('host_ping_ratio'))
-        else:
-            ping_ratio = self.ping_min
-        try:
-            ping_sent = int(job_data['ping_sent'])
-            ping_respond = int(job_data['ping_respond'])
+        with atomic():
+            if self.ping_min == 0:
+                ping_ratio = int(self.team.game.get_option('host_ping_ratio'))
+            else:
+                ping_ratio = self.ping_min
             try:
-                self.ping_last = math.floor((float(ping_respond) / float(ping_sent)) * 100)
-                self.online = (self.ping_last >= ping_ratio)
-            except ZeroDivisionError:
+                ping_sent = int(job_data['ping_sent'])
+                ping_respond = int(job_data['ping_respond'])
+                try:
+                    self.ping_last = math.floor((float(ping_respond) / float(ping_sent)) * 100)
+                    self.online = (self.ping_last >= ping_ratio)
+                except ZeroDivisionError:
+                    self.online = False
+                    self.ping_last = 0
+                api_debug('SCORING', 'Host "%s" was set "%s" by Job "%d".'
+                        % (self.fqdn, ('Online' if self.online else 'Offline'), job.id))
+                self.save()
+            except ValueError:
+                api_error('SCORING', 'Error translating ping responses from Job "%d"!' % job.id)
                 self.online = False
                 self.ping_last = 0
-            api_debug('SCORING', 'Host "%s" was set "%s" by Job "%d".'
-                      % (self.fqdn, ('Online' if self.online else 'Offline'), job.id))
-            self.save()
-        except ValueError:
-            api_error('SCORING', 'Error translating ping responses from Job "%d"!' % job.id)
-            self.online = False
-            self.ping_last = 0
-            self.save()
+                self.save()
         if 'services' not in job_data and self.online:
             api_error('SCORING', 'Host "%s" was set online by Job "%d" but is missing services!' % (self.fqdn, job.id))
             return
@@ -268,6 +271,43 @@ class Host(GridModel):
                         pass
         api_debug('SCORING', 'Finished scoring Host "%s" by Job "%d".' % (self.fqdn, job.id))
         api_score(self.id, 'HOST-JOB', self.get_canonical_name(), 0)
+
+    def update_from_json(self, data):
+        if 'dns' in data:
+            self.fqdn = data["dns"]
+        if "ip" in data:
+            self.ip = data["ip"]
+        if "value" in data:
+            try:
+                self.value = int(data["value"])
+            except ValueError as err:
+                return err
+        with atomic():
+            self.save()
+            if "services" in data and isinstance(data["services"], list):
+                for svc in data["services"]:
+                    s = Service()
+                    if "port" not in svc or "name" not in svc:
+                        continue
+                    try:
+                        s.port = int(svc["port"])
+                    except ValueError as err:
+                        return err
+                    if "protocol" in svc and svc["protocol"] != "tcp":
+                        s.protocol = 2
+                    if "value" in svc:
+                        try:
+                            s.value = int(svc["value"])
+                        except ValueError as err:
+                            return err
+                    s.name = svc["name"]
+                    if "application" in svc:
+                        s.application = svc["application"]
+                    if "bonus" in svc:
+                        s.bonus = bool(svc["bonus"])
+                    s.host = self
+                    s.save()
+        return None
 
 
 class Service(GridModel):
@@ -344,16 +384,17 @@ class Service(GridModel):
         if 'status' not in job_data:
             api_error('SCORING', 'Invalid Service "%s" JSON data by Job "%d"!' % (self.get_canonical_name(), job.id))
             return
-        service_status = self.status
-        job_status = job_data['status'].lower()
-        for status_value in CONST_GRID_SERVICE_STATUS_CHOICES:
-            if status_value[1].lower() == job_status:
-                service_status = status_value[0]
-                break
-        if service_status == 0 and self.bonus and not self.bonus_started:
-            self.bonus_started = True
-        self.status = service_status
-        self.save()
+        with atomic():
+            service_status = self.status
+            job_status = job_data['status'].lower()
+            for status_value in CONST_GRID_SERVICE_STATUS_CHOICES:
+                if status_value[1].lower() == job_status:
+                    service_status = status_value[0]
+                    break
+            if service_status == 0 and self.bonus and not self.bonus_started:
+                self.bonus_started = True
+            self.status = service_status
+            self.save()
         api_debug('SCORING', 'Service "%s" was set "%s" by Job "%d".'
                   % (self.get_canonical_name(), self.get_status_display(), job.id))
         if 'content' in job_data and self.content is not None:

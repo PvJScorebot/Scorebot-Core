@@ -1,0 +1,14 @@
+Scorebot v3 Changelog
+
+v3.3.2 (scorebot-core-atomic):
+ - Added atomic transaction support.
+ - Fixed compatibility issues with Django 2.x (breaks old Django compatibility)
+
+v3.3.1:
+ - Fixed additional scoring fields.
+ - Added scoring logging into a separate log entry file.
+ - Fixed Twitter support for tweeting.
+ - Fixed a race condition between team scoring.
+
+v3.3:
+ - Initial branched release.
