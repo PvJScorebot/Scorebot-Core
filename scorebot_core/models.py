@@ -229,7 +229,7 @@ class Options(models.Model):
     beacon_value = models.PositiveSmallIntegerField('Beacon Scoring Value', default=300)
     ticket_max_score = models.PositiveSmallIntegerField('Ticket Max Score', default=6000)
     flag_stolen_rate = models.PositiveSmallIntegerField('Flag Stolen Rate', default=8400)
-    host_ping_ratio = models.PositiveSmallIntegerField('Default Host Ping Percent', default=125)
+    host_ping_ratio = models.PositiveSmallIntegerField('Default Host Ping Percent', default=75)
     beacon_time = models.PositiveSmallIntegerField('Default Beacon Timeout (seconds)', default=300)
     job_timeout = models.PositiveSmallIntegerField('Unfinished Job Timeout (seconds)', default=300)
     ticket_reopen_multiplier = models.PositiveSmallIntegerField('Ticket Reopen Multiplier', default=10)
