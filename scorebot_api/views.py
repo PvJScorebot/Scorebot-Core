@@ -697,6 +697,6 @@ class ScorebotAPI:
                 beacon_info['start'] = str(beacon.start)
                 beacon_info['finish'] = str(beacon.finish)
                 beacon_list.append(beacon_info)
-            return HttpResponse(content=json.dumps(beacon_list), safe=False)
+            return HttpResponse(content=json.dumps(beacon_list))
         else:
             return HttpResponseBadRequest(content='{"message": "SBE API: Not a supported method type!"}')
