@@ -1,3 +1,14 @@
+# Scorebot v4.0 is a proof of concept version.
+
+Scorebot v4 is a proof of concept version ment to test the new scoring system. It is NOT stable
+and recommended only in use where crashes are ok to have.
+
+This will be getting replaced by UDP, but is currently here for code review.
+
+Please use the v3.3 branch if you require a stable working version of scorebot-core.
+
+Thanks
+
 # Scorebot Core
 
 Sorebot is a scoring engine for CTF competitions.
