@@ -16,6 +16,7 @@ TWITTER_API = {
     "ACCESS_TOKEN": "",
     "CONSUMER_SECRET": "",
     "ACCESS_TOKEN_SECRET": "",
+    "HASHTAGS": ["#PVJ", "#PVJCTF", "#CTF"],
 }
 APPEND_SLASH = False
 SBE_VERSION = "v3.3.3"

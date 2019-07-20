@@ -25,7 +25,7 @@ class EventHost(object):
             log_warning('EVENT', 'Twitter API in not available! Posts will be unavailable!')
             return
         try:
-            self.twitter.PostUpdate(status)
+            self.twitter.PostUpdate('%s %s' % (status, " ".join(settings.TWITTER_API["HASHTAGS"])))
         except twitter.TwitterError as twitterError:
             if 'Status is a duplicate' in str(twitterError.message):
                 log_debug('EVENT', 'Posted a duplicate status! "%s"' % status)

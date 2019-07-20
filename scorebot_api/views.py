@@ -239,19 +239,26 @@ class ScorebotAPI:
                         beacon_host.beacon = beacon
                         beacon_host.save()
                         api_event(team.game, 'A Host on %s\'s network was compromised by "%s" #PvJCTF #CTF #BSidesLV!' %
-                                (host.team.name, team.name))
+                                  (host.team.name, team.name),
+                                  )
                         beacon_value = int(team.game.get_option('beacon_value'))
                         team.set_beacons(beacon_value)
-                        api_info('SCORING-ASYNC', 'Beacon score was applied to Team "%s"!' % team.get_canonical_name(),
-                                request)
-                        api_score(beacon.id, 'BEACON-ATTACKER', team.get_canonical_name(), beacon_value,
-                                beacon_host.get_fqdn())
+                        api_info('SCORING-ASYNC',
+                                 'Beacon score was applied to Team "%s"!' % team.get_canonical_name(),
+                                 request,
+                                 )
+                        api_score(beacon.id, 'BEACON-ATTACKER', team.get_canonical_name(),
+                                  beacon_value,
+                                  beacon_host.get_fqdn(),
+                                  )
                         del beacon_value
                         del beacon
                         del beacon_host
                         del address_raw
-                        api_info('BEACON', 'Team "%s" added a Beacon to Host "%s"!'
-                                % (team.get_canonical_name(), host.get_canonical_name()), request)
+                        api_info('BEACON',
+                                 'Team "%s" added a Beacon to Host "%s"!' %
+                                 (team.get_canonical_name(), host.get_canonical_name()), request,
+                                 )
                     return HttpResponse(status=201)
             except Host.DoesNotExist:
                 if target_team is not None:
@@ -273,18 +280,24 @@ class ScorebotAPI:
                         beacon_host.beacon = beacon
                         beacon_host.save()
                         api_event(team.game, 'A Host on %s\'s network was compromised by "%s" #PvJCTF #CTF #BSidesLV!' %
-                                (target_team.name, team.name))
+                                  (target_team.name, team.name),
+                                  )
                         beacon_value = int(team.game.get_option('beacon_value'))
                         team.set_beacons(beacon_value)
-                        api_info('SCORING-ASYNC', 'Beacon score was applied to Team "%s"!' % team.get_canonical_name(),
-                                request)
+                        api_info('SCORING-ASYNC', 'Beacon score was applied to Team "%s"!' %
+                                 team.get_canonical_name(),
+                                 request,
+                                 )
                         api_score(beacon.id, 'BEACON-ATTACKER', team.get_canonical_name(), beacon_value,
-                                beacon_host.get_fqdn())
+                                  beacon_host.get_fqdn(),
+                                  )
                         del beacon_value
                         del beacon
                         del beacon_host
-                        api_info('BEACON', 'Team "%s" added a Beacon to Host "%s"!'
-                                % (team.get_canonical_name(), address_raw), request)
+                        api_info('BEACON', 'Team "%s" added a Beacon to Host "%s"!' % (
+                            team.get_canonical_name(), address_raw,
+                            ), request,
+                        )
                         del address_raw
                     return HttpResponse(status=201)
                 del address_raw
@@ -307,7 +320,6 @@ class ScorebotAPI:
             import_form = Scorebot2ImportForm(request.POST)
             if import_form.is_valid():
                 if import_form:
-                # try:
                     import_game = import_form.save()
                     if import_game is None:
                         return HttpResponseServerError('Error importing Game! Game is None!')
@@ -389,12 +401,16 @@ class ScorebotAPI:
             with atomic():
                 if team_from is not None:
                     team_from.set_uptime(-1 * amount)
-                    api_score(team_from.id, 'TRANSFER', team_from.get_canonical_name(), -1 * amount,
-                            ('GoldTeam' if team_to is None else team_to.get_canonical_name()))
+                    api_score(team_from.id, 'TRANSFER', team_from.get_canonical_name(), -1 * amount, (
+                        'GoldTeam' if team_to is None else team_to.get_canonical_name(),
+                        ),
+                    )
                 if team_to is not None:
                     team_to.set_uptime(amount)
-                    api_score(team_to.id, 'TRANSFER', team_to.get_canonical_name(), amount,
-                            ('GoldTeam' if team_from is None else team_from.get_canonical_name()))
+                    api_score(team_to.id, 'TRANSFER', team_to.get_canonical_name(), amount, (
+                        'GoldTeam' if team_from is None else team_from.get_canonical_name(),
+                        ),
+                    )
             return HttpResponse(status=200, content='{"message": "transferred"}')
         return HttpResponseBadRequest(content='{"message": "SBE API: Not a supported method type!"}')
 
@@ -540,14 +556,19 @@ class ScorebotAPI:
                         with atomic():
                             purchase = Purchase()
                             purchase.team = team
-                            purchase.amount = int(float(order['price']) *
-                                                (float(team.game.get_option('score_exchange_rate'))/100.0))
+                            purchase.amount = int(
+                                float(order['price']) *
+                                (float(team.game.get_option('score_exchange_rate'))/100.0)
+                            )
                             purchase.item = (order['item'] if len(order['item']) < 150 else order['item'][:150])
                             team.set_uptime(-1 * purchase.amount)
                             purchase.save()
                             api_score(team.id, 'PURCHASE', team.get_canonical_name(), purchase.amount, purchase.item)
-                            api_debug('STORE', 'Processed order of "%s" "%d" for team "%s"!'
-                                    % (purchase.item, purchase.amount, team.get_canonical_name()), request)
+                            api_debug('STORE', 'Processed order of "%s" "%d" for team "%s"!' % (
+                                purchase.item, purchase.amount, team.get_canonical_name(),
+                                ),
+                                request,
+                            )
                             del purchase
                     except ValueError:
                         api_warning('STORE', 'Order "%s" has invalid integers for amount!!' % str(order), request)
@@ -579,9 +600,9 @@ class ScorebotAPI:
             event_form = CreateEventForm(request.POST)
             if event_form.is_valid():
                 if event_form:
-                # try:
+                    # try:
                     event = event_form.save()
-                    #if import_game is None:
+                    # if import_game is None:
                     #    return HttpResponseServerError('Error importing Game! Game is None!')
                     return HttpResponseRedirect(reverse('scorebot3:scoreboard', args=(event,)))
                 # except Exception as importError:
@@ -652,7 +673,7 @@ class ScorebotAPI:
                 return HttpResponseServerError("AN error occured %s!" % str(result))
             host.save()
         except Exception as err:
-            return HttpResponseServerError("AN error occured %s!" % str(result))
+            return HttpResponseServerError("An error occured %s!" % str(err))
         return HttpResponse(json.dumps({"id": host.pk}))
 
     @staticmethod
@@ -679,5 +700,3 @@ class ScorebotAPI:
             return HttpResponse(content=json.dumps(beacon_list), safe=False)
         else:
             return HttpResponseBadRequest(content='{"message": "SBE API: Not a supported method type!"}')
-        team, token, data, exception = game_team_from_token(request, 'CLI', 'token', beacon=True,
-                                                            fields=['address'])

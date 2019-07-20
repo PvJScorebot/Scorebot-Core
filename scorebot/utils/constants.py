@@ -87,6 +87,7 @@ CONST_GAME_EVENT_TYPE_CHOICES = (
     (0, 'Message'),
     (1, 'Window'),
     (2, 'Effect'),
+    (3, 'Video'),
 )
 CONST_EVENT_DEFAULT_TIMEOUT = 10
 CONST_GAME_EVENT_TIMEOUT_DEFAULT = 5

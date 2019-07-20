@@ -7,7 +7,6 @@ from django.db import models
 from datetime import timedelta
 from django.utils import timezone
 from django.db.transaction import atomic
-from django.contrib.auth.models import User
 from scorebot.utils.events import post_tweet, get_scoreboard_message
 from scorebot.utils import api_info, api_debug, api_error, api_warning, api_score, api_event
 from scorebot_core.models import Team, score_create_new, token_create_new, team_create_new_color, Credit, Token
@@ -41,7 +40,7 @@ def game_event_create(game, event_message):
             event_dist = (timezone.now() - game.start).seconds
             post_tweet('%s %s%dm: %s' % (game.name, event_dist // 3600, (event_dist % 3600) // 60, event_message))
             del event_dist
-        except:
+        except Exception:
             pass
     event.save()
 
@@ -222,7 +221,7 @@ class GameTeam(GameModel):
     def get_beacons(self):
         beacons = []
         for beacon in self.compromises.filter(beacon__finish__isnull=True):
-            beacons.append({'team': beacon.beacon.attacker.id,
+            beacons.append({'id': beacon.beacon.id, 'team': beacon.beacon.attacker.id,
                             'color': '#%s' % hex(beacon.beacon.attacker.color).replace('0x', '').zfill(6)})
         return beacons
 
@@ -394,7 +393,7 @@ class GameEvent(GameModel):
             event_data = json.loads(self.data)
         except json.decoder.JSONDecodeError:
             event_data = str(self.data)
-        return {'type': self.type, 'data': event_data}
+        return {'id': self.pk, 'type': self.type, 'data': event_data}
 
     def is_expired(self, expire_time):
         return (self.timeout - expire_time).seconds <= 0
@@ -425,16 +424,22 @@ class GameTicket(GameModel):
             self.closed = True
             if self.type == 1:
                 self.team.set_tickets(self.total)
-                api_debug('SCORING-ASYNC', 'Giving Team "%s" back "%d" points for closing a Ticket "%s"!'
-                        % (self.team.get_canonical_name(), self.total, self.name))
+                api_debug('SCORING-ASYNC', 'Giving Team "%s" back "%d" points for closing a Ticket "%s"!' % (
+                    self.team.get_canonical_name(), self.total, self.name,
+                    ),
+                )
                 api_score(self.id, 'TICKET-CLOSE', self.team.get_canonical_name(), self.total)
             else:
                 self.team.set_tickets(self.total/2)
-                api_debug('SCORING-ASYNC', 'Giving Team "%s" back "%d" points for closing a Ticket "%s"!'
-                        % (self.team.get_canonical_name(), self.total/2, self.name))
+                api_debug('SCORING-ASYNC', 'Giving Team "%s" back "%d" points for closing a Ticket "%s"!' % (
+                    self.team.get_canonical_name(), self.total/2, self.name,
+                    ),
+                )
                 api_score(self.id, 'TICKET-CLOSE', self.team.get_canonical_name(), self.total/2)
-            api_info('SCORING-ASYNC', 'Team "%s" closed Ticket "%s" type "%s"!'
-                    % (self.team.get_canonical_name(), self.name, self.get_type_display()))
+            api_info('SCORING-ASYNC', 'Team "%s" closed Ticket "%s" type "%s"!' % (
+                self.team.get_canonical_name(), self.name, self.get_type_display(),
+                ),
+            )
             api_event(self.team.game, 'Team %s just closed a Ticket "%s"!' % (self.team.name, self.name))
             self.save()
 
@@ -447,8 +452,10 @@ class GameTicket(GameModel):
             score_value = -1 * (reopen_cost * self.total)
             self.team.set_tickets(score_value)
             api_score(self.id, 'TICKET-REOPEN', self.team.get_canonical_name(), score_value)
-            api_info('SCORING-ASYNC', 'Team "%s" had the Ticket "%s" reopened, negating "%d" points!'
-                    % (self.team.get_canonical_name(), self.name, score_value))
+            api_info('SCORING-ASYNC', 'Team "%s" had the Ticket "%s" reopened, negating "%d" points!' % (
+                self.team.get_canonical_name(), self.name, score_value,
+                ),
+            )
             del score_value
             api_event(self.team.game, 'Ticket "%s" for %s was reopened!' % (self.name, self.team.name))
             self.save()
@@ -477,8 +484,10 @@ class GameTicket(GameModel):
                     self.total = self.total + ticket_score
                     self.team.set_tickets(-1 * ticket_score)
                     api_score(self.id, 'TICKET', self.team.get_canonical_name(), -1 * ticket_score)
-                    api_info('SCORING', 'Team "%s" lost "%d" points to open Ticket "%s"!'
-                            % (self.team.get_canonical_name(), ticket_score, self.name))
+                    api_info('SCORING', 'Team "%s" lost "%d" points to open Ticket "%s"!' % (
+                        self.team.get_canonical_name(), ticket_score, self.name,
+                        ),
+                    )
                     self.save()
 
     @staticmethod
@@ -578,8 +587,10 @@ class GameMonitor(GameModel):
                         del host
                         continue
                     if self.selected_hosts.all().count() > 0:
-                        api_debug('JOB', 'Monitor "%s" has host selection rules in place. Type %s' %
-                                     (self.monitor.name, ('Include' if self.only else 'Exclude')))
+                        api_debug('JOB', 'Monitor "%s" has host selection rules in place. Type %s' % (
+                            self.monitor.name, ('Include' if self.only else 'Exclude'),
+                            ),
+                        )
                         host_rules = self.selected_hosts.filter(id=host.id).count()
                         if host_rules == 0 and self.only:
                             api_debug('JOB', 'Monitor "%s" host selection rules denied host "%s".' %
