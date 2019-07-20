@@ -1,5 +1,15 @@
 Scorebot v3 Changelog
 
+v3.3.4 (victory):
+ - Updated the Hosts API DELETE function to NOT delete hosts but remove them from a team
+ - Readded the Beacons List API /api/beacons/active (Requires __SYS_BEACON).
+ - Updated the Events and Beacons scoreboard API to return ID values.
+ - Fixed a timedelta bug in the events API preventing deletion.
+
+v3.3.3
+ - Added the Hosts API
+ - Added some small scoreboard API calls
+
 v3.3.2 (scorebot-core-atomic):
  - Added atomic transaction support.
  - Fixed compatibility issues with Django 2.x (breaks old Django compatibility)

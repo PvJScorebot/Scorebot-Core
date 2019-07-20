@@ -238,7 +238,7 @@ class ScorebotAPI:
                         beacon.save()
                         beacon_host.beacon = beacon
                         beacon_host.save()
-                        api_event(team.game, 'A Host on %s\'s network was compromised by "%s" #PvJCTF #CTF #BSidesLV!' %
+                        api_event(team.game, 'A Host on %s\'s network was compromised by %s!' %
                                   (host.team.name, team.name),
                                   )
                         beacon_value = int(team.game.get_option('beacon_value'))
@@ -279,7 +279,7 @@ class ScorebotAPI:
                         beacon.save()
                         beacon_host.beacon = beacon
                         beacon_host.save()
-                        api_event(team.game, 'A Host on %s\'s network was compromised by "%s" #PvJCTF #CTF #BSidesLV!' %
+                        api_event(team.game, 'A Host on %s\'s network was compromised by %s!' %
                                   (target_team.name, team.name),
                                   )
                         beacon_value = int(team.game.get_option('beacon_value'))

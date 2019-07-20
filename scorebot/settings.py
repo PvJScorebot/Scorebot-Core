@@ -19,7 +19,7 @@ TWITTER_API = {
     "HASHTAGS": ["#PVJ", "#PVJCTF", "#CTF"],
 }
 APPEND_SLASH = False
-SBE_VERSION = "v3.3.3"
+SBE_VERSION = "v3.3.4-victory"
 MEDIA_URL = "/upload/"
 ALLOWED_HOSTS = ["*"]
 LANGUAGE_CODE = "en-us"

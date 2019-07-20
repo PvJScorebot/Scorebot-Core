@@ -396,7 +396,7 @@ class GameEvent(GameModel):
         return {'id': self.pk, 'type': self.type, 'data': event_data}
 
     def is_expired(self, expire_time):
-        return (self.timeout - expire_time).seconds <= 0
+        return expire_time > self.timeout
 
 
 class GameTicket(GameModel):
