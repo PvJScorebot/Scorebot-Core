@@ -27,6 +27,8 @@ urlpatterns = [
     url(r'^host/(?P<host_id>[0-9]+)$', ScorebotAPI.api_change_host),
     url(r'^purchase/(?P<team_id>[0-9]+)$', ScorebotAPI.api_purchase),
     url(r'^purchase/(?P<team_id>[0-9]+)/$', ScorebotAPI.api_purchase),
+    url(r'^event/(?P<game_id>[0-9]+)$', ScorebotAPI.api_event_create_cli),
+    url(r'^event/(?P<game_id>[0-9]+)/$', ScorebotAPI.api_event_create_cli),
     url(r'^scoreboard/(?P<game_id>[0-9]+)$', ScorebotAPI.api_scoreboard_json),
     url(r'^scoreboard/(?P<game_id>[0-9]+)/$', ScorebotAPI.api_scoreboard_json),
 ]

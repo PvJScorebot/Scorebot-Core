@@ -2,6 +2,7 @@ import json
 import uuid
 import random
 
+from datetime import timedelta
 from django.utils import timezone
 from scorebot.utils import logger
 from django.db.transaction import atomic
@@ -16,7 +17,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from scorebot.utils.general import authenticate, game_team_from_token, dump_data
 from scorebot.utils import api_info, api_debug, api_error, api_warning, api_score, api_event
 from scorebot_game.models import GameMonitor, Job, Game, GamePort, GameTeam, GameCompromise, Purchase,\
-    GameCompromiseHost, GameTicket
+    GameCompromiseHost, GameTicket, GameEvent
 from django.http import HttpResponseBadRequest, HttpResponseForbidden, HttpResponse, HttpResponseNotFound,\
     HttpResponseServerError, HttpResponseRedirect
 
@@ -700,3 +701,44 @@ class ScorebotAPI:
             return HttpResponse(content=json.dumps(beacon_list))
         else:
             return HttpResponseBadRequest(content='{"message": "SBE API: Not a supported method type!"}')
+
+    @staticmethod
+    @csrf_exempt
+    @authenticate("__SYS_CLI")
+    def api_event_create_cli(request, game_id):
+        if request.method != "POST":
+            return HttpResponseForbidden()
+        try:
+            json_text = request.body.decode("UTF-8")
+        except UnicodeTranslateError:
+            return HttpResponseBadRequest("Invalid Unicode!")
+        try:
+            data = json.loads(json_text)
+        except json.decoder.JSONDecodeError:
+            return HttpResponseBadRequest("Invalid JSON!")
+        if "data" not in data or isinstance(data["data"], dict):
+            return HttpResponseBadRequest("Bad JSON!")
+        e = GameEvent()
+        try:
+            e.game = Game.objects.get(pk=game_id)
+        except Game.DoesNotExist:
+            return HttpResponseNotFound()
+        e.data = data["data"]
+        try:
+            e.type = data.get("type", 0)
+            if e.type < 0 or e.type > 4:
+                return HttpResponseBadRequest("Bad Type Value!")
+        except ValueError:
+            return HttpResponseBadRequest("Bad Type Value!")
+        try:
+            t = data.get("timeout", 30)
+            if t <= 0:
+                return HttpResponseBadRequest("Bad Timeout Value!")
+            e.timeout = timezone.now() + timedelta(seconds=t)
+        except ValueError:
+            return HttpResponseBadRequest("Bad Timeout Value!")
+        try:
+            e.save()
+        except Exception as err:
+            return HttpResponseServerError(str(err))
+        return HttpResponse(status=201)
