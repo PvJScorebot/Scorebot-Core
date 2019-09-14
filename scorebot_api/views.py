@@ -685,10 +685,10 @@ class ScorebotAPI:
 
     @staticmethod
     @csrf_exempt
-    @authenticate('__SYS_BEACON')
+    @authenticate()
     def api_beacon_active(request):
         if request.method == METHOD_GET:
-            all_beacons = GameCompromise.objects.filter(finish__isnull=True)
+            all_beacons = GameCompromise.objects.filter(finish__isnull=True, team=request.authentication)
             beacon_list = list()
             for beacon in all_beacons:
                 beacon_info = dict()
@@ -716,14 +716,14 @@ class ScorebotAPI:
             data = json.loads(json_text)
         except json.decoder.JSONDecodeError:
             return HttpResponseBadRequest("Invalid JSON!")
-        if "data" not in data or isinstance(data["data"], dict):
+        if "data" not in data or not isinstance(data["data"], dict):
             return HttpResponseBadRequest("Bad JSON!")
         e = GameEvent()
         try:
             e.game = Game.objects.get(pk=game_id)
         except Game.DoesNotExist:
             return HttpResponseNotFound()
-        e.data = data["data"]
+        e.data = json.dumps(data["data"])
         try:
             e.type = data.get("type", 0)
             if e.type < 0 or e.type > 4:

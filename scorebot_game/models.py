@@ -33,7 +33,7 @@ def store_score_history(team, score):
 def game_event_create(game, event_message):
     event = GameEvent()
     event.game = game
-    event.data = event_message
+    event.data = json.dumps({"text": event_message})
     event.timeout = timezone.now() + timedelta(seconds=30)
     if game.start is not None:
         try:
