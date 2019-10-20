@@ -210,6 +210,9 @@ class GameTeam(GameModel):
     score = models.OneToOneField('scorebot_core.Score', on_delete=models.SET_NULL, blank=True, null=True)
     beacons = models.ManyToManyField('scorebot_core.Token', blank=True, editable=False, related_name='beacon_tokens')
 
+    def __hash__(self):
+        return hash(self.name) + self.id
+
     def __str__(self):
         return '[GameTeam] %s <%s>%s' % (self.get_canonical_name(), self.score.get_score(),
                                          ('OF' if self.offensive else ''))
