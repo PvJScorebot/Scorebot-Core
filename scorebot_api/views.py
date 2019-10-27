@@ -689,7 +689,11 @@ class ScorebotAPI:
     @authenticate()
     def api_beacon_active(request):
         if request.method == METHOD_GET:
-            all_beacons = GameCompromise.objects.filter(finish__isnull=True, team=request.authentication)
+            try:
+                t = GameTeam.objects.get(token=request.authentication.token)
+            except GameTeam.DoesNotExist:
+                return HttpResponseBadRequest(content='{"message": "Invalid Token"}')
+            all_beacons = GameCompromise.objects.filter(finish__isnull=True, attacker=t)
             beacon_list = list()
             for beacon in all_beacons:
                 beacon_info = dict()
