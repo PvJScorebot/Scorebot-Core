@@ -93,6 +93,8 @@ class Scorebot2ImportForm(forms.Form):
                 blue_host = Host()
                 blue_host.fqdn = host["hostname"]
                 blue_host.team = blueteam_team
+                if "ip" in host:
+                    blue_host.ip = host["ip"]
                 blue_host.save()
                 for service in host["services"]:
                     blue_service = Service()
