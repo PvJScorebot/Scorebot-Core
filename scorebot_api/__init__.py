@@ -1,1 +1,1 @@
-default_app_config = 'scorebot.utils.apps.ScorebotAPI'
+default_app_config = "scorebot.utils.apps.ScorebotAPI"

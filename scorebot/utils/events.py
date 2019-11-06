@@ -9,26 +9,35 @@ class EventHost(object):
     def __init__(self):
         self.games = dict()
         try:
-            self.twitter = twitter.Api(consumer_key=settings.TWITTER_API['CONSUMER_KEY'],
-                                       consumer_secret=settings.TWITTER_API['CONSUMER_SECRET'],
-                                       access_token_key=settings.TWITTER_API['ACCESS_TOKEN'],
-                                       access_token_secret=settings.TWITTER_API['ACCESS_TOKEN_SECRET'])
+            self.twitter = twitter.Api(
+                consumer_key=settings.TWITTER_API["CONSUMER_KEY"],
+                consumer_secret=settings.TWITTER_API["CONSUMER_SECRET"],
+                access_token_key=settings.TWITTER_API["ACCESS_TOKEN"],
+                access_token_secret=settings.TWITTER_API["ACCESS_TOKEN_SECRET"],
+            )
         except twitter.TwitterError:
-            log_warning('EVENT', 'Error authenticating the Twitter API! Posts will be unavailable!')
+            log_warning(
+                "EVENT",
+                "Error authenticating the Twitter API! Posts will be unavailable!",
+            )
             self.twitter = None
 
     def post_tweet(self, status):
-        if not settings.TWITTER_API['ENABLED']:
-            log_debug('EVENT-TWITTER', 'Twitter not enabled.  Post: "%s"' % status)
+        if not settings.TWITTER_API["ENABLED"]:
+            log_debug("EVENT-TWITTER", 'Twitter not enabled.  Post: "%s"' % status)
             return
         if self.twitter is None:
-            log_warning('EVENT', 'Twitter API in not available! Posts will be unavailable!')
+            log_warning(
+                "EVENT", "Twitter API in not available! Posts will be unavailable!"
+            )
             return
         try:
-            self.twitter.PostUpdate('%s %s' % (status, " ".join(settings.TWITTER_API["HASHTAGS"])))
+            self.twitter.PostUpdate(
+                "%s %s" % (status, " ".join(settings.TWITTER_API["HASHTAGS"]))
+            )
         except twitter.TwitterError as twitterError:
-            if 'Status is a duplicate' in str(twitterError.message):
-                log_debug('EVENT', 'Posted a duplicate status! "%s"' % status)
+            if "Status is a duplicate" in str(twitterError.message):
+                log_debug("EVENT", 'Posted a duplicate status! "%s"' % status)
             else:
                 self.twitter = None
 

@@ -7,11 +7,11 @@ from scorebot.utils.constants import CONST_GAME_GAME_RUNNING
 
 
 def init_daemon():
-    return DaemonEntry('reporter', 60, report_round, 120)
+    return DaemonEntry("reporter", 60, report_round, 120)
 
 
 def report_round():
-    log_debug('DAEMON', 'Reporting on Scores..')
+    log_debug("DAEMON", "Reporting on Scores..")
     games = Game.objects.filter(finish__isnull=True, status=CONST_GAME_GAME_RUNNING)
     if games is not None and len(games) > 0:
         check_time = timezone.now()

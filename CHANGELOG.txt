@@ -1,8 +1,14 @@
 Scorebot v3 Changelog
 
+v3.5:
+ - Updated the Beacons API List with the proper Token association.
+ - Fixed a bug with multiple Items not being able to be deleted.
+ - Fixed an issue with Service content creation (Thanks @dookgit !)
+ - Changed the default daemon cleanup timeout from 30s to 5s to facilitate in event cleanup.
+
 v3.3.4 (victory):
  - Updated the Hosts API DELETE function to NOT delete hosts but remove them from a team
- - Readded the Beacons List API /api/beacons/active (Requires __SYS_BEACON).
+ - Redded the Beacons List API /api/beacons/active (Requires __SYS_BEACON).
  - Updated the Events and Beacons scoreboard API to return ID values.
  - Fixed a timedelta bug in the events API preventing deletion.
 

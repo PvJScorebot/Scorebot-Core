@@ -6,23 +6,35 @@ import importlib.util
 
 from django.conf import settings
 from django.utils import timezone
-from scorebot.utils.logger import log_debug, log_error, log_info, log_warning, log_stdout
+from scorebot.utils.logger import (
+    log_debug,
+    log_error,
+    log_info,
+    log_warning,
+    log_stdout,
+)
 
 
 def start_daemon():
-    log_stdout('DAEMON', 'DEBUG')
-    log_info('DAEMON', 'Starting the Scorebot3 Daemon process..')
+    log_stdout("DAEMON", "DEBUG")
+    log_info("DAEMON", "Starting the Scorebot3 Daemon process..")
     daemon_thread = Daemon()
     daemon_thread.load_daemons(settings.DAEMON_DIR)
-    log_debug('DAEMON', 'Loaded "%d" daemons, [%s]..' % (len(daemon_thread.daemons),
-                                                         ', '.join([str(d.name) for d in daemon_thread.daemons])))
+    log_debug(
+        "DAEMON",
+        'Loaded "%d" daemons, [%s]..'
+        % (
+            len(daemon_thread.daemons),
+            ", ".join([str(d.name) for d in daemon_thread.daemons]),
+        ),
+    )
     try:
         daemon_thread.start()
         while daemon_thread.running:
             pass
     except KeyboardInterrupt:
         daemon_thread.stop()
-        log_info('DAEMON', 'Stopping SBE Daemon process..')
+        log_info("DAEMON", "Stopping SBE Daemon process..")
 
 
 class DaemonEntry(object):
@@ -36,7 +48,9 @@ class DaemonEntry(object):
         if name is None:
             raise ValueError('Parameter "name" cannot be None!')
         if not isinstance(trigger, int) or int(trigger) <= 0:
-            raise ValueError('Parameter "trigger" must be a positive "integer" object type!')
+            raise ValueError(
+                'Parameter "trigger" must be a positive "integer" object type!'
+            )
         if not callable(method):
             raise ValueError('Parameter "method" must be a "callable" object type!')
         self.next = None
@@ -48,21 +62,25 @@ class DaemonEntry(object):
         self.timeout = timeout
 
     def stop(self):
-        log_debug('DAEMON', 'Attempting to stop daemon "%s"..' % self.name)
+        log_debug("DAEMON", 'Attempting to stop daemon "%s"..' % self.name)
         self.running = False
         self.thread.stop()
-        log_debug('DAEMON', 'Stopped daemon "%s"..' % self.name)
+        log_debug("DAEMON", 'Stopped daemon "%s"..' % self.name)
         self.thread = None
 
     def start(self):
-        log_debug('DAEMON', 'Attempting to start daemon "%s"..' % self.name)
+        log_debug("DAEMON", 'Attempting to start daemon "%s"..' % self.name)
         if self.timeout > 0:
-            log_debug('DAEMON', 'Daemon "%s" has a set timeout of "%d" seconds..' % (self.name, self.timeout))
+            log_debug(
+                "DAEMON",
+                'Daemon "%s" has a set timeout of "%d" seconds..'
+                % (self.name, self.timeout),
+            )
         self.next = timezone.now()
         self.running = True
         self.thread = DaemonThread(self)
         self.thread.start()
-        log_debug('DAEMON', 'Started Daemon "%s"!' % self.name)
+        log_debug("DAEMON", 'Started Daemon "%s"!' % self.name)
 
     def del_stop(self):
         self.thread = None
@@ -108,7 +126,9 @@ class Daemon(threading.Thread):
             for daemon in self.daemons:
                 if daemon.__bool__():
                     if daemon.is_timeout(now):
-                        log_debug('DAEMON', 'killing Daemon "%s" due to timeout!' % self.name)
+                        log_debug(
+                            "DAEMON", 'killing Daemon "%s" due to timeout!' % self.name
+                        )
                         daemon.stop()
                 else:
                     if daemon.is_ready(now):
@@ -127,10 +147,14 @@ class Daemon(threading.Thread):
         daemon_list = os.listdir(daemon_dir)
         if len(daemon_list) > 0:
             for daemon_file in daemon_list:
-                if '.py' in daemon_file and not (' ' in daemon_file or '-' in daemon_file or '-' in daemon_file):
+                if ".py" in daemon_file and not (
+                    " " in daemon_file or "-" in daemon_file or "-" in daemon_file
+                ):
                     try:
-                        daemon_loader = importlib.util.spec_from_file_location(daemon_file.replace('.py', ''),
-                                                                               os.path.join(daemon_dir, daemon_file))
+                        daemon_loader = importlib.util.spec_from_file_location(
+                            daemon_file.replace(".py", ""),
+                            os.path.join(daemon_dir, daemon_file),
+                        )
                         if daemon_loader is None:
                             continue
                         daemon_class = importlib.util.module_from_spec(daemon_loader)
@@ -138,21 +162,31 @@ class Daemon(threading.Thread):
                             continue
                         daemon_loader.loader.exec_module(daemon_class)
                         try:
-                            daemon_class_def = getattr(daemon_class, 'init_daemon')
-                            if daemon_class_def is not None and callable(daemon_class_def):
+                            daemon_class_def = getattr(daemon_class, "init_daemon")
+                            if daemon_class_def is not None and callable(
+                                daemon_class_def
+                            ):
                                 daemon_entry = daemon_class_def()
                                 if daemon_entry is not None:
                                     self.daemons.append(daemon_entry)
-                                    log_debug('DAEMON', 'Loaded Daemon "%s"!' % daemon_class.__name__)
+                                    log_debug(
+                                        "DAEMON",
+                                        'Loaded Daemon "%s"!' % daemon_class.__name__,
+                                    )
                             del daemon_class
                             del daemon_loader
                         except AttributeError:
-                            log_warning('DAEMON',
-                                        'Daemon class for "%s" does not have the "init_daemon" method, ignoring!' %
-                                        daemon_class.__name__)
+                            log_warning(
+                                "DAEMON",
+                                'Daemon class for "%s" does not have the "init_daemon" method, ignoring!'
+                                % daemon_class.__name__,
+                            )
                     except Exception as loadError:
-                        log_error('DAEMON', 'An error ocured when attempting to load Daemon "%s"! Exception: "%s' %
-                                  (daemon_file, str(loadError)))
+                        log_error(
+                            "DAEMON",
+                            'An error ocured when attempting to load Daemon "%s"! Exception: "%s'
+                            % (daemon_file, str(loadError)),
+                        )
         del daemon_list
 
 
@@ -171,13 +205,16 @@ class DaemonThread(threading.Thread):
     def run(self):
         self.running = True
         print('Starting Daemon "%s".' % self.entry.name)
-        log_info('DAEMON', 'Starting Daemon "%s"..' % self.entry.name)
+        log_info("DAEMON", 'Starting Daemon "%s"..' % self.entry.name)
         try:
             self.entry.method()
         except Exception as threadError:
-            log_error('DAEMON', 'Daemon "%s" encountered an error when running! Exception: "%s"' %
-                      (self.entry.name, str(threadError)))
-        log_info('DAEMON', 'Daemon "%s" finished running.' % self.entry.name)
+            log_error(
+                "DAEMON",
+                'Daemon "%s" encountered an error when running! Exception: "%s"'
+                % (self.entry.name, str(threadError)),
+            )
+        log_info("DAEMON", 'Daemon "%s" finished running.' % self.entry.name)
         self.running = False
         self.entry.del_stop()
 

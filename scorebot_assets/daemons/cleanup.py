@@ -6,7 +6,7 @@ from scorebot_game.models import Job, GameCompromise, GameEvent
 
 
 def init_daemon():
-    return DaemonEntry("cleanup", 30, daemon_cleanup, 120)
+    return DaemonEntry("cleanup", 5, daemon_cleanup, 120)
 
 
 def job_cleanup():
