@@ -1,10 +1,23 @@
 #!/usr/bin/false
-#
-# Scorebotv4 - The Scorebot Project
-# 2018 iDigitalFlame / The Scorebot / CTF Factory Team
-#
 # Core Scorebot v4 Class Instances
 # Allows for static pointers to be implemented and added.
+# Scorebot v4 - The Scorebot Project
+#
+# Copyright (C) 2020 iDigitalFlame
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+#
 
 from sys import stderr, exit
 from logging import Formatter
@@ -69,5 +82,3 @@ except OSError as err:
     exit(1)
 
 General.info('%s version: %s initilization complete!' % (Name, Version))
-
-# EOF
