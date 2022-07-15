@@ -14,18 +14,20 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-from django.conf.urls import url
+from django.urls import re_path
 from scorebot_api.views import ScorebotAPI
 
 urlpatterns = [
-    url(r"^sb2import$", ScorebotAPI.api_import),
-    url(r"^sb2import/$", ScorebotAPI.api_import, name="sb2import"),
-    url(r"^scoreboard/(?P<game_id>[0-9]+)$", ScorebotAPI.api_scoreboard),
-    url(r"^event_message/$", ScorebotAPI.api_event_message, name="form_event_message"),
-    url(
+    re_path(r"^sb2import$", ScorebotAPI.api_import),
+    re_path(r"^sb2import/$", ScorebotAPI.api_import, name="sb2import"),
+    re_path(r"^scoreboard/(?P<game_id>[0-9]+)$", ScorebotAPI.api_scoreboard),
+    re_path(
+        r"^event_message/$", ScorebotAPI.api_event_message, name="form_event_message"
+    ),
+    re_path(
         r"^scoreboard/(?P<game_id>[0-9]+)/$",
         ScorebotAPI.api_scoreboard,
         name="scoreboard",
     ),
-    url(r"", ScorebotAPI.api_default_page),
+    re_path(r"", ScorebotAPI.api_default_page),
 ]
